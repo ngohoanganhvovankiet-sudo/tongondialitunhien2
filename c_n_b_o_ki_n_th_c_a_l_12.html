@@ -1,0 +1,2503 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Cơn Bão Kiến Thức - Địa Lí Tự Nhiên 12</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            background-color: #050b14;
+            color: #f1f5f9;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .font-mono-tech {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Dynamic Weather Sky Transitions */
+        .sky-super-typhoon {
+            background: radial-gradient(circle at 50% 15%, #450a0a 0%, #1e1b4b 45%, #020617 100%);
+        }
+        .sky-red-alert {
+            background: radial-gradient(circle at 50% 20%, #3b0764 0%, #1e293b 50%, #090d16 100%);
+        }
+        .sky-orange-alert {
+            background: radial-gradient(circle at 50% 20%, #431407 0%, #0f172a 55%, #020617 100%);
+        }
+        .sky-yellow-alert {
+            background: radial-gradient(circle at 50% 20%, #1e3a8a 0%, #0f172a 60%, #020617 100%);
+        }
+        .sky-green-clear {
+            background: radial-gradient(circle at 50% 15%, #0284c7 0%, #0369a1 45%, #0f172a 100%);
+        }
+
+        /* Lightning Flash Effect */
+        @keyframes lightningFlash {
+            0%, 93%, 100% { opacity: 0; }
+            94% { opacity: 0.75; }
+            95% { opacity: 0.1; }
+            96% { opacity: 0.9; }
+            98% { opacity: 0; }
+        }
+
+        .lightning-overlay {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 50% 20%, rgba(224, 242, 254, 0.9), rgba(56, 189, 248, 0.3));
+            pointer-events: none;
+            z-index: 5;
+            opacity: 0;
+        }
+
+        .lightning-active {
+            animation: lightningFlash 7s infinite;
+        }
+
+        .lightning-instant {
+            animation: instantBolt 0.55s ease-out;
+        }
+
+        @keyframes instantBolt {
+            0% { opacity: 0.95; }
+            25% { opacity: 0.15; }
+            50% { opacity: 0.85; }
+            100% { opacity: 0; }
+        }
+
+        /* Cyclone Swirl Animation */
+        @keyframes cycloneSpin {
+            from { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.06); }
+            to { transform: rotate(360deg) scale(1); }
+        }
+
+        .cyclone-vortex {
+            animation: cycloneSpin 4s linear infinite;
+            transform-origin: center;
+        }
+
+        /* Tornado Funnel Sway */
+        @keyframes tornadoSway {
+            0%, 100% { transform: translateX(-6px) skewX(-4deg); }
+            50% { transform: translateX(6px) skewX(4deg); }
+        }
+
+        .tornado-anim {
+            animation: tornadoSway 1.6s ease-in-out infinite;
+        }
+
+        /* Flood Wave Animation */
+        @keyframes waveSlide {
+            0% { background-position-x: 0px; }
+            100% { background-position-x: 1200px; }
+        }
+
+        .flood-wave-surface {
+            background: repeating-linear-gradient(
+                90deg,
+                rgba(14, 165, 233, 0.55) 0%,
+                rgba(56, 189, 248, 0.75) 25%,
+                rgba(3, 105, 161, 0.65) 50%,
+                rgba(56, 189, 248, 0.75) 75%,
+                rgba(14, 165, 233, 0.55) 100%
+            );
+            background-size: 1200px 100%;
+            animation: waveSlide 8s linear infinite;
+        }
+
+        /* Screen Shake for Storm Surge / Wrong Answer */
+        @keyframes stormShake {
+            0%, 100% { transform: translate(0, 0); }
+            15% { transform: translate(-9px, 5px); }
+            30% { transform: translate(8px, -6px); }
+            45% { transform: translate(-7px, -4px); }
+            60% { transform: translate(7px, 5px); }
+            75% { transform: translate(-5px, 2px); }
+        }
+
+        .shake-storm {
+            animation: stormShake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+        }
+
+        /* Glassmorphism Panels */
+        .storm-panel {
+            background: rgba(10, 18, 34, 0.82);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(56, 189, 248, 0.28);
+            box-shadow: 0 12px 36px -6px rgba(0, 0, 0, 0.75), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+        }
+
+        /* Sunbeams when sky clears */
+        @keyframes sunPulse {
+            0%, 100% { transform: scale(1); opacity: 0.85; }
+            50% { transform: scale(1.08); opacity: 1; }
+        }
+
+        .sun-glow {
+            animation: sunPulse 4s ease-in-out infinite;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #091326;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0284c7;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body id="mainBody" class="sky-red-alert transition-colors duration-1000 flex flex-col justify-between min-h-screen" oncontextmenu="return false;">
+
+    <!-- WEATHER RAIN & WIND PARTICLES CANVAS -->
+    <canvas id="weatherCanvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
+
+    <!-- LIGHTNING OVERLAY -->
+    <div id="lightningOverlay" class="lightning-overlay lightning-active"></div>
+
+    <!-- SUNSHINE & RAINBOW OVERLAY (Shown when storm is cleared) -->
+    <div id="clearSkyOverlay" class="fixed inset-0 pointer-events-none z-0 opacity-0 transition-opacity duration-1000 overflow-hidden">
+        <div class="absolute -top-24 right-10 w-80 h-80 rounded-full bg-gradient-to-br from-amber-300 via-yellow-400 to-orange-300 blur-2xl opacity-70 sun-glow"></div>
+        <div class="absolute top-12 left-1/4 w-[650px] h-[320px] rounded-t-full border-t-[14px] border-rose-400/25 blur-sm"></div>
+        <div class="absolute top-16 left-1/4 w-[630px] h-[310px] rounded-t-full border-t-[14px] border-amber-300/25 blur-sm"></div>
+        <div class="absolute top-20 left-1/4 w-[610px] h-[300px] rounded-t-full border-t-[14px] border-emerald-400/25 blur-sm"></div>
+        <div class="absolute top-24 left-1/4 w-[590px] h-[290px] rounded-t-full border-t-[14px] border-sky-400/25 blur-sm"></div>
+    </div>
+
+    <!-- RISING FLOOD WATER BAR AT BOTTOM OF SCREEN -->
+    <div id="floodWaterContainer" class="fixed bottom-0 left-0 right-0 pointer-events-none z-10 transition-all duration-700 ease-out overflow-hidden" style="height: 22vh;">
+        <div class="w-full h-3 flood-wave-surface"></div>
+        <div class="w-full h-full bg-gradient-to-t from-sky-950/90 via-blue-900/65 to-cyan-600/35 backdrop-blur-[2px] flex items-end justify-end p-2">
+            <span id="floodWatermarkText" class="text-[10px] font-mono-tech text-cyan-200/70 uppercase tracking-widest px-2 py-0.5 rounded bg-slate-950/60 border border-cyan-400/30">
+                Mực nước ngập: 60% (Báo động Đỏ)
+            </span>
+        </div>
+    </div>
+
+    <!-- TOP HEADER -->
+    <header class="w-full border-b border-cyan-500/30 bg-slate-950/85 backdrop-blur-md sticky top-0 z-30 px-3 py-2 sm:px-6">
+        <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-2.5">
+                <div id="headerStormIconBox" class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-rose-600 to-orange-600 flex items-center justify-center shadow-lg shadow-rose-500/30 border border-rose-300/40">
+                    <i id="headerStormIcon" class="fa-solid fa-hurricane text-white text-base sm:text-lg animate-spin"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-[10px] sm:text-xs font-mono-tech uppercase tracking-widest px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-400/30">VN-STORM COMMAND 12</span>
+                        <span id="headerAlertBadge" class="text-[10px] sm:text-xs font-mono-tech uppercase tracking-wider px-2 py-0.5 rounded bg-rose-500/25 text-rose-300 border border-rose-400/40 font-bold">
+                            BÁO ĐỘNG ĐỎ
+                        </span>
+                    </div>
+                    <h1 class="text-sm sm:text-lg font-extrabold tracking-tight text-white">CƠN BÃO KIẾN THỨC • ĐỊA LÍ TỰ NHIÊN 12</h1>
+                </div>
+            </div>
+
+            <!-- Commander Info & Sound Controls -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <div id="commanderBadge" class="hidden items-center gap-2 bg-slate-900/90 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs">
+                    <i class="fa-solid fa-user-shield text-cyan-400"></i>
+                    <div class="leading-tight">
+                        <div id="displayStudentName" class="font-bold text-white truncate max-w-[110px] sm:max-w-[160px]">---</div>
+                        <div id="displayStudentClass" class="text-[10px] text-cyan-300 font-mono-tech">Lớp: ---</div>
+                    </div>
+                </div>
+
+                <button id="soundToggleBtn" onclick="toggleStormAudio()" class="p-2 sm:px-3 sm:py-2 rounded-lg bg-slate-800/90 hover:bg-slate-700 border border-cyan-500/30 text-cyan-300 transition flex items-center gap-1.5 text-xs font-semibold cursor-pointer" title="Bật/Tắt âm thanh gió bão">
+                    <i id="soundIcon" class="fa-solid fa-volume-high text-sm"></i>
+                    <span class="hidden md:inline" id="soundText">Âm thanh Bão: BẬT</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main id="mainViewport" class="flex-1 flex items-center justify-center p-2.5 sm:p-5 w-full max-w-6xl mx-auto relative z-20">
+
+        <!-- 1. START SCREEN -->
+        <section id="startScreen" class="w-full max-w-2xl storm-panel rounded-2xl p-5 sm:p-7 relative overflow-hidden">
+            <div class="absolute -top-24 -right-24 w-56 h-56 bg-rose-500/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-24 -left-24 w-56 h-56 bg-cyan-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="text-center mb-5">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-rose-500/20 border border-rose-400/40 text-rose-300 text-xs font-mono-tech mb-2.5">
+                    <i class="fa-solid fa-satellite-dish animate-pulse"></i> TRUNG TÂM DỰ BÁO & PHÒNG CHỐNG THIÊN TAI QUỐC GIA
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-white to-amber-300">
+                    CƠN BÃO KIẾN THỨC ĐỊA LÍ 12
+                </h2>
+                <p class="text-xs sm:text-sm text-slate-300 mt-2 leading-relaxed">
+                    Một cơn bão lớn đang đổ bộ vào đất liền nước ta gây mưa lớn và ngập lụt diện rộng! Mỗi quyết định kiến thức <b>ĐÚNG</b> sẽ giúp <b>mây tan, gió giảm, nước lũ rút dần</b> và chuyển bản đồ từ <span class="text-rose-400 font-bold">Báo động Đỏ</span> <i class="fa-solid fa-arrow-right text-[10px]"></i> <span class="text-orange-400 font-bold">Cam</span> <i class="fa-solid fa-arrow-right text-[10px]"></i> <span class="text-amber-300 font-bold">Vàng</span> <i class="fa-solid fa-arrow-right text-[10px]"></i> <span class="text-emerald-400 font-bold">Xanh bình yên</span>.
+                </p>
+            </div>
+
+            <!-- Storm Mechanics & Extreme Weather Highlights -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mb-4 text-xs">
+                <div class="bg-slate-900/85 border border-cyan-500/30 rounded-xl p-3">
+                    <div class="flex items-center gap-2 font-bold text-cyan-300 mb-1">
+                        <i class="fa-solid fa-wind"></i> Xua Tan Bão Lũ
+                    </div>
+                    <p class="text-slate-300 leading-snug text-[11px]">Trả lời đúng giúp giảm cấp gió, hạ mực nước ngập và tăng Điểm hiểu bài. Trả lời sai khiến bão mạnh lên tới <b>Cấp Siêu Bão</b>!</p>
+                </div>
+
+                <div class="bg-slate-900/85 border border-rose-500/35 rounded-xl p-3">
+                    <div class="flex items-center gap-2 font-bold text-rose-300 mb-1">
+                        <i class="fa-solid fa-tornado"></i> Đợt Thiên Tai Kép
+                    </div>
+                    <p class="text-slate-300 leading-snug text-[11px]">Giữa trận sẽ xuất hiện <b>Giông lốc, Vòi rồng & Siêu bão</b> buộc bạn phải xử lý liên tiếp <b>2 - 3 nhiệm vụ</b> mới đẩy lùi được sức hủy diệt.</p>
+                </div>
+
+                <div class="bg-slate-900/85 border border-amber-500/35 rounded-xl p-3">
+                    <div class="flex items-center gap-2 font-bold text-amber-300 mb-1">
+                        <i class="fa-solid fa-award"></i> Điểm Thưởng K12
+                    </div>
+                    <p class="text-slate-300 leading-snug text-[11px]">Thưởng <b>+0.5 điểm</b> nếu dẹp tan bão không cần hỗ trợ; thưởng <b>+0.25 điểm</b> nếu có kích hoạt Biện pháp hỗ trợ chống bão.</p>
+                </div>
+            </div>
+
+            <!-- Login Form -->
+            <div class="bg-slate-900/95 border border-cyan-500/35 rounded-xl p-4 sm:p-5 space-y-4">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                    <span class="text-xs font-mono-tech uppercase text-cyan-400 font-bold">
+                        <i class="fa-solid fa-id-badge mr-1.5"></i>ĐĂNG KÝ CHỈ HUY PHÒNG CHỐNG BÃO
+                    </span>
+                    <span class="text-[11px] text-amber-300 font-mono-tech"><i class="fa-regular fa-clock mr-1"></i>15 - 30 giây / nhiệm vụ</span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+                    <div class="sm:col-span-2">
+                        <label for="studentNameInput" class="block text-xs font-semibold text-slate-300 mb-1.5">Họ và tên học sinh <span class="text-rose-400">*</span></label>
+                        <div class="relative">
+                            <i class="fa-solid fa-user-astronaut absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                            <input type="text" id="studentNameInput" placeholder="Ví dụ: Trần Hoàng Nam" 
+                                class="w-full pl-9 pr-3 py-2.5 rounded-lg bg-slate-950 border border-slate-700 focus:border-cyan-400 focus:outline-none text-sm text-white placeholder-slate-500 transition">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="studentClassInput" class="block text-xs font-semibold text-slate-300 mb-1.5">Lớp <span class="text-rose-400">*</span></label>
+                        <div class="relative">
+                            <i class="fa-solid fa-users-rectangle absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                            <input type="text" id="studentClassInput" placeholder="Ví dụ: 12A2" 
+                                class="w-full pl-9 pr-3 py-2.5 rounded-lg bg-slate-950 border border-slate-700 focus:border-cyan-400 focus:outline-none text-sm text-white placeholder-slate-500 transition">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="loginErrorMsg" class="hidden rounded-lg bg-rose-500/15 border border-rose-500/40 px-3 py-2 text-xs text-rose-300 flex items-center gap-2">
+                    <i class="fa-solid fa-triangle-exclamation text-rose-400"></i>
+                    <span>Vui lòng nhập đầy đủ <b>Họ và tên</b> cùng <b>Lớp</b> trước khi vào tâm bão!</span>
+                </div>
+
+                <button onclick="startStormMission()" class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-cyan-500 via-sky-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-extrabold text-sm sm:text-base shadow-lg shadow-cyan-500/25 transition transform active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer">
+                    <i class="fa-solid fa-bolt"></i>
+                    <span>BẮT ĐẦU CHIẾN DỊCH DẬP BÃO (NHIỆM VỤ NGẪU NHIÊN)</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- 2. GAMEPLAY SCREEN -->
+        <section id="gameScreen" class="hidden w-full flex-col gap-3">
+            
+            <!-- Top Meteorological Telemetry Row -->
+            <div class="grid grid-cols-2 lg:grid-cols-5 gap-2 sm:gap-2.5">
+                <!-- Progress -->
+                <div class="storm-panel rounded-xl p-2.5 flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded-lg bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shrink-0 text-sm">
+                        <i class="fa-solid fa-list-check"></i>
+                    </div>
+                    <div class="w-full">
+                        <div class="flex justify-between text-[10px] text-slate-400 font-mono-tech">
+                            <span>NHIỆM VỤ</span>
+                            <span id="progressText" class="text-cyan-300 font-bold">1/12</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden mt-1">
+                            <div id="progressBar" class="h-full bg-gradient-to-r from-cyan-400 to-emerald-400 transition-all duration-300" style="width: 8%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wind Level -->
+                <div class="storm-panel rounded-xl p-2.5 flex items-center gap-2.5">
+                    <div id="windIconBox" class="w-8 h-8 rounded-lg bg-rose-500/20 border border-rose-500/40 flex items-center justify-center text-rose-400 shrink-0 text-sm">
+                        <i class="fa-solid fa-wind"></i>
+                    </div>
+                    <div class="w-full">
+                        <div class="flex justify-between text-[10px] text-slate-400 font-mono-tech">
+                            <span>SỨC GIÓ BÃO</span>
+                            <span id="windLevelText" class="text-rose-400 font-bold">Cấp 12</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden mt-1">
+                            <div id="windBar" class="h-full bg-rose-500 transition-all duration-500" style="width: 75%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Flood Level -->
+                <div class="storm-panel rounded-xl p-2.5 flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded-lg bg-sky-500/20 border border-sky-500/40 flex items-center justify-center text-sky-400 shrink-0 text-sm">
+                        <i class="fa-solid fa-house-flood-water"></i>
+                    </div>
+                    <div class="w-full">
+                        <div class="flex justify-between text-[10px] text-slate-400 font-mono-tech">
+                            <span>MỨC ĐỘ NGẬP</span>
+                            <span id="floodLevelText" class="text-sky-300 font-bold">60%</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden mt-1">
+                            <div id="floodBar" class="h-full bg-sky-400 transition-all duration-500" style="width: 60%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mastery Score -->
+                <div class="storm-panel rounded-xl p-2.5 flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 shrink-0 text-sm">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <div>
+                        <div class="text-[10px] text-slate-400 font-mono-tech">ĐIỂM HIỂU BÀI</div>
+                        <div id="masteryScoreText" class="text-sm sm:text-base font-extrabold font-mono-tech text-emerald-400">0 điểm</div>
+                    </div>
+                </div>
+
+                <!-- Bonus Status -->
+                <div class="storm-panel rounded-xl p-2.5 flex items-center gap-2.5 col-span-2 lg:col-span-1">
+                    <div id="bonusBadgeIcon" class="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-300 shrink-0 text-sm">
+                        <i class="fa-solid fa-medal"></i>
+                    </div>
+                    <div class="overflow-hidden">
+                        <div class="text-[10px] text-slate-400 font-mono-tech">MỨC THƯỞNG DỰ KIẾN</div>
+                        <div id="bonusTrackText" class="text-xs font-extrabold text-emerald-300 truncate">+0.5đ (Tự lực 100%)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MAIN 2-COLUMN COMMAND CENTER (Left: Weather Radar Map | Right: Mission Console) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-3 items-stretch">
+                
+                <!-- LEFT COLUMN: INTERACTIVE VIETNAM WEATHER MAP & ALERT STATUS (5 cols) -->
+                <div class="lg:col-span-5 storm-panel rounded-2xl p-3.5 sm:p-4 flex flex-col justify-between relative overflow-hidden">
+                    <!-- Map Top Bar -->
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-2.5 mb-2">
+                        <div class="flex items-center gap-2">
+                            <span id="radarPulseDot" class="w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping"></span>
+                            <span class="text-xs font-mono-tech font-bold uppercase text-slate-200">BẢN ĐỒ CẢNH BÁO THỜI TIẾT</span>
+                        </div>
+                        <span id="mapAlertPill" class="text-[11px] font-mono-tech font-extrabold px-2.5 py-0.5 rounded-full bg-rose-500/25 text-rose-300 border border-rose-400/50">
+                            BÁO ĐỘNG ĐỎ
+                        </span>
+                    </div>
+
+                    <!-- SVG VIETNAM WEATHER RADAR -->
+                    <div class="relative flex-1 min-h-[300px] sm:min-h-[370px] rounded-xl bg-[#0b131e] border border-cyan-500/30 flex items-center justify-center overflow-hidden p-1.5 shadow-inner">
+                        <!-- Custom SVG Replica of "LƯỢC ĐỒ CÂM VIỆT NAM" with Dynamic Weather Alert Coloring -->
+                        <svg id="vietnamRadarSvg" class="w-full h-full max-h-[395px]" viewBox="0 0 420 580" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <radialGradient id="cycloneGrad" cx="50%" cy="50%" r="50%">
+                                    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+                                    <stop offset="22%" stop-color="#f43f5e" stop-opacity="0.78"/>
+                                    <stop offset="60%" stop-color="#9f1239" stop-opacity="0.45"/>
+                                    <stop offset="100%" stop-color="#881337" stop-opacity="0"/>
+                                </radialGradient>
+                                <filter id="coastCyanGlow" x="-20%" y="-20%" width="140%" height="140%">
+                                    <feDropShadow dx="0" dy="0" stdDeviation="2.5" flood-color="#22d3ee" flood-opacity="0.85"/>
+                                </filter>
+                            </defs>
+
+                            <!-- Dark Map Background & Outer Frame -->
+                            <rect x="4" y="4" width="412" height="572" rx="8" fill="#0b131e" stroke="#1e293b" stroke-width="1.5"/>
+
+                            <!-- Latitude & Longitude Coordinate Grid Lines -->
+                            <g stroke="#1e293b" stroke-width="0.8" opacity="0.85">
+                                <line x1="70" y1="4" x2="70" y2="576"/>
+                                <line x1="145" y1="4" x2="145" y2="576"/>
+                                <line x1="220" y1="4" x2="220" y2="576"/>
+                                <line x1="295" y1="4" x2="295" y2="576"/>
+                                <line x1="370" y1="4" x2="370" y2="576"/>
+
+                                <line x1="4" y1="80" x2="416" y2="80"/>
+                                <line x1="4" y1="165" x2="416" y2="165"/>
+                                <line x1="4" y1="250" x2="416" y2="250"/>
+                                <line x1="4" y1="335" x2="416" y2="335"/>
+                                <line x1="4" y1="420" x2="416" y2="420"/>
+                                <line x1="4" y1="505" x2="416" y2="505"/>
+                            </g>
+
+                            <!-- Neighboring Countries & Hainan Island Outlines -->
+                            <g fill="#101a28" stroke="#334155" stroke-width="1" opacity="0.8">
+                                <!-- Hainan Island -->
+                                <path d="M 282,155 L 302,147 L 318,153 L 322,168 L 306,184 L 284,183 L 274,170 Z"/>
+                                <!-- Laos / Cambodia Western Border Lines -->
+                                <path d="M 4,132 L 62,135 L 88,100 M 4,340 L 68,334 L 94,352 L 106,422 L 122,455" fill="none" stroke="#334155" stroke-width="1.1"/>
+                            </g>
+
+                            <!-- Neighboring Country & Sea Labels -->
+                            <text x="262" y="46" fill="#64748b" font-size="11" font-weight="700" letter-spacing="0.8">TRUNG QUỐC</text>
+                            <text x="52" y="182" fill="#64748b" font-size="11" font-weight="700" letter-spacing="0.8">LÀO</text>
+                            <text x="116" y="382" fill="#64748b" font-size="11" font-weight="700" letter-spacing="0.8">CAMPUCHIA</text>
+                            <text x="330" y="362" fill="#64748b" font-size="12" font-weight="700" letter-spacing="1">BIỂN ĐÔNG</text>
+
+                            <!-- VIETNAM MAINLAND & PROVINCES GROUP -->
+                            <g id="vietnamMapGroup">
+                                <!-- Detailed Mainland Silhouette (Dynamic Fill: Red -> Orange -> Yellow -> Green) -->
+                                <path id="vnMainlandPath"
+                                    d="M 136,24 L 154,18 L 166,28 L 178,25 L 194,35 L 210,33 L 218,45 L 208,60 L 222,68 L 236,78 L 248,92 L 234,104 L 218,112 L 206,126 L 198,144 L 190,162 L 176,178 L 168,196 L 178,214 L 194,232 L 212,248 L 230,264 L 248,280 L 266,302 L 280,324 L 288,350 L 296,376 L 300,404 L 296,432 L 284,454 L 262,466 L 238,476 L 218,492 L 204,512 L 192,528 L 166,542 L 146,554 L 138,544 L 140,522 L 132,504 L 124,492 L 142,482 L 146,466 L 166,466 L 178,452 L 176,436 L 192,428 L 212,424 L 228,408 L 232,382 L 232,354 L 234,326 L 228,300 L 212,276 L 192,254 L 176,234 L 158,212 L 148,194 L 134,188 L 118,176 L 122,158 L 140,148 L 146,132 L 126,124 L 106,112 L 88,96 L 68,78 L 54,58 L 62,44 L 82,48 L 96,38 L 114,44 L 126,32 Z"
+                                    fill="#ef4444" fill-opacity="0.58" stroke="#f87171" stroke-width="1.6" class="transition-all duration-700"/>
+
+                                <!-- Subtle Internal Provincial Subdivision Lines (Matching Lược Đồ Câm) -->
+                                <g stroke="#e2e8f0" stroke-width="0.55" stroke-opacity="0.45" fill="none">
+                                    <!-- Northern Mountain & Red River Delta Provinces -->
+                                    <path d="M 136,24 L 142,54 L 122,74 L 88,96"/>
+                                    <path d="M 166,28 L 162,58 L 142,54 L 114,44"/>
+                                    <path d="M 194,35 L 182,66 L 162,58 L 154,84 L 122,74"/>
+                                    <path d="M 218,45 L 198,76 L 182,66"/>
+                                    <path d="M 236,78 L 204,88 L 184,96 L 154,84 L 146,112 L 126,124"/>
+                                    <path d="M 218,112 L 192,108 L 184,96"/>
+                                    <path d="M 206,126 L 182,122 L 166,116 L 146,112"/>
+                                    <path d="M 198,144 L 172,138 L 146,132"/>
+                                    <path d="M 190,162 L 162,158 L 140,148"/>
+                                    <path d="M 176,178 L 148,174 L 122,158"/>
+                                    <path d="M 82,48 L 104,70 L 122,74"/>
+                                    <!-- North Central & Central Coast Provinces -->
+                                    <path d="M 168,196 L 148,194"/>
+                                    <path d="M 178,214 L 158,212"/>
+                                    <path d="M 194,232 L 176,234"/>
+                                    <path d="M 212,248 L 192,254"/>
+                                    <path d="M 230,264 L 212,276"/>
+                                    <path d="M 248,280 L 228,300"/>
+                                    <!-- Central Highlands & South Central Coast Provinces -->
+                                    <path d="M 266,302 L 248,312 L 228,300"/>
+                                    <path d="M 280,324 L 256,332 L 234,326"/>
+                                    <path d="M 288,350 L 260,356 L 232,354"/>
+                                    <path d="M 296,376 L 264,382 L 232,382"/>
+                                    <path d="M 300,404 L 266,408 L 228,408"/>
+                                    <path d="M 296,432 L 262,430 L 242,422 L 228,408"/>
+                                    <path d="M 248,312 L 256,332 L 260,356 L 264,382 L 266,408 L 262,430"/>
+                                    <!-- Southeast & Mekong Delta Provinces -->
+                                    <path d="M 284,454 L 252,446 L 212,424"/>
+                                    <path d="M 262,466 L 234,456 L 192,428"/>
+                                    <path d="M 238,476 L 212,468 L 178,452"/>
+                                    <path d="M 218,492 L 190,484 L 166,466"/>
+                                    <path d="M 204,512 L 174,502 L 142,482"/>
+                                    <path d="M 192,528 L 162,518 L 132,504"/>
+                                    <path d="M 166,542 L 154,528 L 140,522"/>
+                                    <path d="M 234,456 L 212,468 L 190,484 L 174,502 L 162,518"/>
+                                </g>
+
+                                <!-- Glowing Cyan Coastline Highlight (Signature look from Lược Đồ Câm) -->
+                                <path d="M 248,92 L 234,104 L 218,112 L 206,126 L 198,144 L 190,162 L 176,178 L 168,196 L 178,214 L 194,232 L 212,248 L 230,264 L 248,280 L 266,302 L 280,324 L 288,350 L 296,376 L 300,404 L 296,432 L 284,454 L 262,466 L 238,476 L 218,492 L 204,512 L 192,528 L 166,542 L 146,554 L 138,544 L 140,522 L 132,504 L 124,492"
+                                    fill="none" stroke="#22d3ee" stroke-width="2.2" filter="url(#coastCyanGlow)" opacity="0.9"/>
+
+                                <!-- Phú Quốc & Côn Đảo Islands -->
+                                <path d="M 106,486 L 111,476 L 115,488 L 110,496 Z" fill="#334155" stroke="#22d3ee" stroke-width="1.3"/>
+                                <text x="72" y="492" fill="#e2e8f0" font-size="8.5" font-weight="600">Phú Quốc</text>
+
+                                <circle cx="202" cy="542" r="2.8" fill="#334155" stroke="#22d3ee" stroke-width="1.2"/>
+                                <circle cx="206" cy="540" r="1.5" fill="#22d3ee"/>
+                                <text x="212" y="545" fill="#e2e8f0" font-size="8.5" font-weight="600">Côn Đảo</text>
+
+                                <!-- QĐ. Hoàng Sa (Việt Nam) -->
+                                <g id="hoangSaGroup">
+                                    <circle id="hoangSaDot" cx="352" cy="242" r="3" fill="#22d3ee"/>
+                                    <circle cx="362" cy="238" r="2.2" fill="#22d3ee"/>
+                                    <circle cx="368" cy="245" r="2" fill="#22d3ee"/>
+                                    <circle cx="346" cy="250" r="1.8" fill="#22d3ee"/>
+                                    <circle cx="358" cy="253" r="2.4" fill="#22d3ee"/>
+                                    <circle cx="375" cy="252" r="1.6" fill="#22d3ee"/>
+                                    <text x="360" y="268" text-anchor="middle" fill="#f1f5f9" font-size="8.5" font-weight="700">QĐ. HOÀNG SA</text>
+                                    <text x="360" y="278" text-anchor="middle" fill="#cbd5e1" font-size="8">(Việt Nam)</text>
+                                </g>
+
+                                <!-- QĐ. Trường Sa (Việt Nam) -->
+                                <g id="truongSaGroup">
+                                    <circle id="truongSaDot" cx="348" cy="462" r="2.8" fill="#22d3ee"/>
+                                    <circle cx="362" cy="454" r="2" fill="#22d3ee"/>
+                                    <circle cx="376" cy="466" r="2.3" fill="#22d3ee"/>
+                                    <circle cx="336" cy="478" r="2" fill="#22d3ee"/>
+                                    <circle cx="355" cy="488" r="2.5" fill="#22d3ee"/>
+                                    <circle cx="384" cy="482" r="1.9" fill="#22d3ee"/>
+                                    <circle cx="322" cy="508" r="2.1" fill="#22d3ee"/>
+                                    <circle cx="342" cy="515" r="1.8" fill="#22d3ee"/>
+                                    <text x="362" y="473" text-anchor="middle" fill="#f1f5f9" font-size="8.5" font-weight="700">QĐ. TRƯỜNG SA</text>
+                                    <text x="362" y="483" text-anchor="middle" fill="#cbd5e1" font-size="8">(Việt Nam)</text>
+                                </g>
+                            </g>
+
+                            <!-- Compass Rose & Scale Bar (Bottom Left, matching Lược Đồ Câm) -->
+                            <g transform="translate(52, 518)" opacity="0.85">
+                                <text x="0" y="-22" text-anchor="middle" fill="#94a3b8" font-size="9" font-weight="700">N</text>
+                                <circle cx="0" cy="0" r="16" fill="none" stroke="#64748b" stroke-width="1.2"/>
+                                <polygon points="0,-14 -5,8 0,4 5,8" fill="#94a3b8"/>
+                                <rect x="-24" y="22" width="48" height="3.5" fill="none" stroke="#64748b" stroke-width="0.9"/>
+                                <rect x="-24" y="22" width="16" height="3.5" fill="#64748b"/>
+                                <rect x="8" y="22" width="16" height="3.5" fill="#64748b"/>
+                            </g>
+
+                            <!-- Map Title Tag at Bottom Left ("LƯỢC ĐỒ CÂM VIỆT NAM") -->
+                            <g transform="translate(14, 556)">
+                                <rect x="0" y="0" width="132" height="16" rx="3" fill="#0f172a" stroke="#334155" stroke-width="0.8"/>
+                                <text x="66" y="11" text-anchor="middle" fill="#cbd5e1" font-size="8" font-weight="700" letter-spacing="0.5">LƯỢC ĐỒ CÂM VIỆT NAM</text>
+                            </g>
+
+                            <!-- Dynamic Storm Cloud Layers (Fade out as student answers correctly) -->
+                            <g id="mapStormCloudsGroup" class="transition-opacity duration-700" style="opacity: 0.9;">
+                                <ellipse cx="175" cy="115" rx="65" ry="28" fill="rgba(148, 163, 184, 0.32)"/>
+                                <ellipse cx="235" cy="275" rx="72" ry="34" fill="rgba(100, 116, 139, 0.38)"/>
+                                <ellipse cx="215" cy="435" rx="62" ry="28" fill="rgba(148, 163, 184, 0.3)"/>
+                            </g>
+
+                            <!-- Spinning Typhoon Vortex Over Biển Đông / Mainland -->
+                            <g id="mapCycloneGroup" transform="translate(265, 255)" class="transition-all duration-700">
+                                <g class="cyclone-vortex">
+                                    <circle cx="0" cy="0" r="56" fill="url(#cycloneGrad)"/>
+                                    <path d="M-38,-12 C-18,-42 30,-36 42,0 C24,-14 -12,-12 -26,14 Z" fill="rgba(255,255,255,0.48)"/>
+                                    <path d="M38,12 C18,42 -30,36 -42,0 C-24,14 12,12 26,-14 Z" fill="rgba(255,255,255,0.48)"/>
+                                    <circle cx="0" cy="0" r="8" fill="#0b131e" stroke="#ffffff" stroke-width="2.2"/>
+                                </g>
+                            </g>
+
+                            <!-- Extreme Tornado / Waterspout Icon Overlay (Visible during Extreme Combo Event) -->
+                            <g id="mapTornadoIcon" class="hidden tornado-anim" transform="translate(185, 215)">
+                                <polygon points="0,0 42,0 28,48 16,48" fill="#f43f5e" opacity="0.9"/>
+                                <ellipse cx="21" cy="0" rx="24" ry="7" fill="#fda4af"/>
+                                <text x="-24" y="-10" fill="#fecdd3" font-size="9.5" font-weight="bold" font-family="monospace">VÒI RỒNG / LỐC XOÁY!</text>
+                            </g>
+
+                            <!-- Clear Sun Symbol (Visible when storm is defeated) -->
+                            <g id="mapClearSunGroup" class="hidden" transform="translate(315, 110)">
+                                <circle cx="0" cy="0" r="26" fill="#facc15" opacity="0.92"/>
+                                <circle cx="0" cy="0" r="36" fill="#fde047" opacity="0.35"/>
+                            </g>
+
+                            <!-- INTERACTIVE RADAR PINS OVERLAY (Active during MAP_PIN missions) -->
+                            <g id="mapInteractivePinsLayer" class="hidden"></g>
+                        </svg>
+
+                        <!-- Alert Color Scale Legend (Bottom Right of Map) -->
+                        <div class="absolute bottom-2 left-2 right-2 bg-slate-950/90 border border-slate-800 rounded-lg px-2.5 py-1.5 flex items-center justify-between text-[10px] font-mono-tech">
+                            <span class="text-slate-400">CẤP BÁO ĐỘNG:</span>
+                            <div class="flex items-center gap-1.5">
+                                <span id="scaleStepRed" class="px-2 py-0.5 rounded bg-rose-600 text-white font-bold ring-2 ring-white">ĐỎ</span>
+                                <i class="fa-solid fa-angle-right text-slate-500"></i>
+                                <span id="scaleStepOrange" class="px-2 py-0.5 rounded bg-orange-500/30 text-orange-300">CAM</span>
+                                <i class="fa-solid fa-angle-right text-slate-500"></i>
+                                <span id="scaleStepYellow" class="px-2 py-0.5 rounded bg-amber-400/25 text-amber-200">VÀNG</span>
+                                <i class="fa-solid fa-angle-right text-slate-500"></i>
+                                <span id="scaleStepGreen" class="px-2 py-0.5 rounded bg-emerald-500/25 text-emerald-300">XANH</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Live Weather Status Message -->
+                    <div id="weatherNarrativeBox" class="mt-2.5 rounded-xl bg-slate-900/90 border border-slate-800 p-2.5 text-xs text-slate-300 flex items-center gap-2.5">
+                        <i id="weatherNarrativeIcon" class="fa-solid fa-cloud-showers-water text-cyan-400 text-base shrink-0"></i>
+                        <span id="weatherNarrativeText" class="leading-snug">Mây đen bao phủ dày đặc, mưa lớn đang gây ngập lụt. Hãy giải quyết chính xác nhiệm vụ để làm tan mây!</span>
+                    </div>
+                </div>
+
+                <!-- RIGHT COLUMN: MISSION QUESTION & ANTI-STORM CONSOLE (7 cols) -->
+                <div class="lg:col-span-7 storm-panel rounded-2xl p-4 sm:p-5 flex flex-col justify-between relative overflow-hidden border-2 border-cyan-500/35" id="missionConsoleBox">
+                    
+                    <!-- EXTREME WEATHER MULTI-TASK WARNING BANNER (Hidden during normal missions) -->
+                    <div id="extremeEventBanner" class="hidden mb-3 rounded-xl bg-gradient-to-r from-rose-950 via-red-900/90 to-orange-950 border-2 border-rose-400 p-3 shadow-lg shadow-rose-950/60">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-8 h-8 rounded-lg bg-rose-500 text-white flex items-center justify-center font-bold animate-bounce shrink-0">
+                                    <i id="extremeEventIcon" class="fa-solid fa-tornado"></i>
+                                </div>
+                                <div>
+                                    <div id="extremeEventTitle" class="text-xs sm:text-sm font-extrabold uppercase text-rose-200 tracking-wide">
+                                        CẢNH BÁO KHẨN CẤP: VÒI RỒNG & GIÔNG LỐC XOÁY!
+                                    </div>
+                                    <div id="extremeEventSub" class="text-[11px] text-rose-300">
+                                        Phải xử lý liên tiếp các nhiệm vụ trong đợt thiên tai này để cắt đứt sức hủy diệt!
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="extremeChainDots" class="flex items-center gap-1.5 font-mono-tech text-xs bg-slate-950/80 px-2.5 py-1 rounded-lg border border-rose-400/40 text-rose-200 font-bold">
+                                Nhiệm vụ chuỗi: 1/2
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mission Header & Countdown Timer -->
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 pb-3 mb-3 border-b border-slate-800">
+                            <div class="flex flex-wrap items-center gap-2">
+                                <span id="missionTopicBadge" class="text-[11px] font-mono-tech font-bold px-2.5 py-1 rounded-md bg-cyan-500/20 text-cyan-300 border border-cyan-400/30">
+                                    BÀI 1: VỊ TRÍ ĐỊA LÍ & LÃNH THỔ
+                                </span>
+                                <span id="missionDiffBadge" class="text-[11px] font-mono-tech px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-400/30">
+                                    Độ khó: Chuẩn (20 giây)
+                                </span>
+                            </div>
+
+                            <!-- Countdown Timer Pill -->
+                            <div id="timerBox" class="flex items-center gap-2 px-3 py-1 rounded-lg bg-slate-900 border border-cyan-500/40 font-mono-tech">
+                                <i class="fa-solid fa-stopwatch text-cyan-400 text-xs"></i>
+                                <span id="timerText" class="text-xs sm:text-sm font-extrabold text-cyan-300">20s</span>
+                            </div>
+                        </div>
+
+                        <!-- Timer Progress Bar -->
+                        <div class="w-full h-1.5 bg-slate-900 rounded-full overflow-hidden mb-3.5">
+                            <div id="timerBar" class="h-full bg-cyan-400 transition-all duration-500" style="width: 100%"></div>
+                        </div>
+
+                        <!-- Question Box -->
+                        <div class="rounded-xl bg-slate-950/95 border border-cyan-400/35 p-3.5 sm:p-4 mb-3.5 shadow-inner">
+                            <div class="flex items-center justify-between flex-wrap gap-1.5 text-[11px] font-mono-tech text-slate-400 mb-1.5">
+                                <span id="missionMechanicBadge" class="px-2 py-0.5 rounded bg-cyan-500/15 text-cyan-300 border border-cyan-400/30 font-bold">
+                                    <i class="fa-solid fa-gamepad mr-1"></i>CƠ CHẾ TƯƠNG TÁC
+                                </span>
+                                <button id="manualSupportBtn" onclick="triggerStormSupport(true)" class="text-amber-300 hover:text-amber-200 underline decoration-dotted cursor-pointer flex items-center gap-1">
+                                    <i class="fa-solid fa-life-ring"></i> Yêu cầu Hỗ trợ Chống bão (+0.25đ)
+                                </button>
+                            </div>
+                            <h3 id="questionPromptText" class="text-sm sm:text-base font-bold text-white leading-relaxed">
+                                Đang tải nhiệm vụ khí tượng...
+                            </h3>
+                        </div>
+
+                        <!-- DYNAMIC MULTI-MECHANIC INTERACTION WORKSPACE (No A/B/C/D Multiple Choice!) -->
+                        <div id="interactiveTaskContainer" class="space-y-3">
+                            <!-- Dynamically populated by 5 interactive mission types -->
+                        </div>
+                    </div>
+
+                    <!-- STORM MITIGATION HINT / EXPLANATION DRAWER -->
+                    <div id="stormFeedbackDrawer" class="hidden mt-3.5 rounded-xl p-3.5 border transition-all">
+                        <div class="flex items-start gap-3">
+                            <div id="feedbackIconBox" class="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 mt-0.5 text-base">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <div class="flex-1 space-y-1">
+                                <div class="flex items-center justify-between flex-wrap gap-1">
+                                    <h4 id="feedbackTitle" class="font-extrabold text-xs sm:text-sm uppercase tracking-wide">BIỆN PHÁP CHỐNG BÃO - NGĂN NGẬP</h4>
+                                    <span id="feedbackTag" class="text-[10px] font-mono-tech px-2 py-0.5 rounded">HỖ TRỢ KHẨN CẤP</span>
+                                </div>
+                                <p id="feedbackBodyText" class="text-xs sm:text-sm text-slate-200 leading-relaxed"></p>
+                                
+                                <div id="nextMissionBtnWrapper" class="hidden pt-2">
+                                    <button onclick="goToNextMission()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-slate-950 font-extrabold text-xs sm:text-sm shadow-lg flex items-center gap-2 transition cursor-pointer">
+                                        <span id="nextMissionBtnLabel">TIẾP TỤC NHIỆM VỤ TIẾP THEO</span>
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. WEATHER BULLETIN SUMMARY & REWARD SCREEN -->
+        <section id="bulletinScreen" class="hidden w-full max-w-3xl">
+            <div id="bulletinCard" class="storm-panel rounded-2xl p-5 sm:p-8 border-2 border-emerald-400/70 relative overflow-hidden shadow-2xl">
+                <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-48 bg-emerald-400/20 blur-3xl pointer-events-none"></div>
+
+                <!-- Bulletin Header -->
+                <div class="text-center border-b border-slate-700/80 pb-4 relative z-10">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-xs font-mono-tech mb-2">
+                        <i class="fa-solid fa-sun text-amber-300 animate-spin"></i> BẢN TIN TỔNG KẾT KHÍ TƯỢNG & PHÒNG CHỐNG THIÊN TAI
+                    </div>
+                    <h2 id="bulletinMainTitle" class="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-emerald-200 via-cyan-200 to-amber-300 uppercase tracking-wide">
+                        TRỜI QUANG MÂY TẠNH • HOÀN THÀNH XUẤT SẮC
+                    </h2>
+                    <p class="text-xs sm:text-sm text-slate-300 mt-1">Bản đồ thời tiết Việt Nam đã chuyển sang trạng thái <b>Bình Yên (Báo động Xanh)</b></p>
+                </div>
+
+                <!-- Commander Info & Bonus Points Card -->
+                <div class="my-5 grid grid-cols-1 md:grid-cols-3 gap-4 items-center relative z-10">
+                    <div class="md:col-span-2 bg-slate-900/90 border border-slate-700 rounded-xl p-4 space-y-2.5">
+                        <div class="text-xs font-mono-tech text-cyan-400 uppercase">Chỉ huy chiến dịch dập bão:</div>
+                        <div id="bulletinStudentName" class="text-xl sm:text-2xl font-extrabold text-white">---</div>
+                        <div class="flex flex-wrap gap-2.5 text-xs text-slate-300">
+                            <span class="bg-slate-800 px-2.5 py-1 rounded-md border border-slate-700">
+                                <i class="fa-solid fa-graduation-cap text-cyan-400 mr-1"></i>Lớp: <b id="bulletinStudentClass" class="text-white">---</b>
+                            </span>
+                            <span class="bg-slate-800 px-2.5 py-1 rounded-md border border-slate-700">
+                                <i class="fa-solid fa-shield-heart text-emerald-400 mr-1"></i>Mã Bản Tin: <b id="bulletinCode" class="font-mono-tech text-emerald-300">STORM-2026</b>
+                            </span>
+                        </div>
+                        <p id="bulletinDescription" class="text-xs sm:text-sm text-slate-300 pt-1 leading-relaxed"></p>
+                    </div>
+
+                    <!-- Bonus Point Box -->
+                    <div id="bulletinRewardBox" class="bg-gradient-to-br from-amber-500/25 via-emerald-500/15 to-cyan-500/20 border-2 border-amber-400/70 rounded-xl p-4 text-center flex flex-col items-center justify-center h-full">
+                        <div class="w-12 h-12 rounded-full bg-amber-400/20 border border-amber-300 flex items-center justify-center text-amber-300 text-2xl mb-1.5 shadow-lg">
+                            <i id="bulletinTrophyIcon" class="fa-solid fa-trophy"></i>
+                        </div>
+                        <div class="text-[11px] font-mono-tech uppercase text-amber-200">ĐIỂM THƯỞNG CỘNG THÊM</div>
+                        <div id="bulletinBonusScore" class="text-3xl sm:text-4xl font-extrabold font-mono-tech text-amber-300 my-1">+0.5 ĐIỂM</div>
+                        <div id="bulletinSupportCountTag" class="text-[11px] px-2.5 py-0.5 rounded bg-slate-900/90 text-emerald-300 border border-emerald-500/30">
+                            Không dùng hỗ trợ (0 lần)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Weather Telemetry Final Summary -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-5 text-center text-xs relative z-10">
+                    <div class="bg-slate-900/85 border border-slate-800 rounded-xl p-3">
+                        <div class="text-slate-400">Trạng thái Bản đồ</div>
+                        <div class="text-sm sm:text-base font-extrabold text-emerald-400 font-mono-tech mt-0.5">BÁO ĐỘNG XANH</div>
+                    </div>
+                    <div class="bg-slate-900/85 border border-slate-800 rounded-xl p-3">
+                        <div class="text-slate-400">Mức độ ngập nước</div>
+                        <div class="text-sm sm:text-base font-extrabold text-cyan-300 font-mono-tech mt-0.5">0% (Đã rút hết)</div>
+                    </div>
+                    <div class="bg-slate-900/85 border border-slate-800 rounded-xl p-3">
+                        <div class="text-slate-400">Điểm Hiểu Bài</div>
+                        <div id="bulletinFinalMastery" class="text-sm sm:text-base font-extrabold text-amber-300 font-mono-tech mt-0.5">1200 điểm</div>
+                    </div>
+                    <div class="bg-slate-900/85 border border-slate-800 rounded-xl p-3">
+                        <div class="text-slate-400">Thời điểm phát tin</div>
+                        <div id="bulletinTimestamp" class="text-sm sm:text-base font-extrabold text-slate-200 font-mono-tech mt-0.5">--:--</div>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-center gap-3 relative z-10">
+                    <button onclick="replayNewStormSession()" class="px-5 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-extrabold text-xs sm:text-sm shadow-lg shadow-cyan-500/25 flex items-center gap-2 transition cursor-pointer">
+                        <i class="fa-solid fa-rotate"></i>
+                        <span>CHƠI LƯỢT MỚI (ĐỔI NHIỆM VỤ BÃO KHÁC)</span>
+                    </button>
+                    <button onclick="switchCommanderAccount()" class="px-4 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-200 font-bold text-xs sm:text-sm flex items-center gap-2 transition cursor-pointer">
+                        <i class="fa-solid fa-user-pen"></i>
+                        <span>ĐỔI HỌC SINH KHÁC</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="w-full text-center py-2 px-4 text-[11px] text-slate-400 border-t border-slate-900/80 bg-slate-950/80 relative z-20">
+        Cơn Bão Kiến Thức Địa Lí 12 (Bài 1, 2, 3 - Kết nối tri thức với cuộc sống) • Tương thích mượt mà trên K12Online & Điện thoại
+    </footer>
+
+    <script>
+        /* ============================================================================
+           1. WEB AUDIO API: REALISTIC WIND HOWLING, THUNDERCLAPS, SIRENS & CHIMES
+           ============================================================================ */
+        let audioCtx = null;
+        let windNoiseNode = null;
+        let windFilterNode = null;
+        let windGainNode = null;
+        let soundEnabled = true;
+
+        function initStormAudio() {
+            if (!audioCtx) {
+                const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                if (AudioCtx) {
+                    audioCtx = new AudioCtx();
+                }
+            }
+            if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        function startAmbientWindSound() {
+            if (!soundEnabled) return;
+            try {
+                initStormAudio();
+                if (!audioCtx || windNoiseNode) return;
+
+                // Generate 3-second looping pink/brown noise buffer for howling wind
+                const bufferSize = audioCtx.sampleRate * 3;
+                const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+                const data = buffer.getChannelData(0);
+                let lastOut = 0.0;
+                for (let i = 0; i < bufferSize; i++) {
+                    const white = Math.random() * 2 - 1;
+                    data[i] = (lastOut + (0.02 * white)) / 1.02;
+                    lastOut = data[i];
+                    data[i] *= 2.5;
+                }
+
+                windNoiseNode = audioCtx.createBufferSource();
+                windNoiseNode.buffer = buffer;
+                windNoiseNode.loop = true;
+
+                windFilterNode = audioCtx.createBiquadFilter();
+                windFilterNode.type = 'bandpass';
+                windFilterNode.frequency.setValueAtTime(380, audioCtx.currentTime);
+                windFilterNode.Q.setValueAtTime(3.5, audioCtx.currentTime);
+
+                windGainNode = audioCtx.createGain();
+                windGainNode.gain.setValueAtTime(0.06, audioCtx.currentTime);
+
+                windNoiseNode.connect(windFilterNode);
+                windFilterNode.connect(windGainNode);
+                windGainNode.connect(audioCtx.destination);
+                windNoiseNode.start();
+            } catch (e) {
+                console.warn("Ambient wind skipped:", e);
+            }
+        }
+
+        function modulateWindAudioBySeverity(severity) {
+            // severity: 0 (clear) to 100 (super typhoon)
+            if (!audioCtx || !windGainNode || !windFilterNode || !soundEnabled) return;
+            const now = audioCtx.currentTime;
+            if (severity <= 2) {
+                windGainNode.gain.setTargetAtTime(0.001, now, 0.4);
+            } else {
+                const targetGain = Math.min(0.18, 0.02 + (severity / 100) * 0.14);
+                const targetFreq = 220 + (severity / 100) * 520;
+                windGainNode.gain.setTargetAtTime(targetGain, now, 0.3);
+                windFilterNode.frequency.setTargetAtTime(targetFreq, now, 0.3);
+            }
+        }
+
+        function stopAmbientWindSound() {
+            if (windNoiseNode) {
+                try { windNoiseNode.stop(); } catch (e) {}
+                windNoiseNode.disconnect();
+                windNoiseNode = null;
+            }
+        }
+
+        function toggleStormAudio() {
+            soundEnabled = !soundEnabled;
+            const icon = document.getElementById('soundIcon');
+            const text = document.getElementById('soundText');
+            if (soundEnabled) {
+                icon.className = 'fa-solid fa-volume-high text-sm';
+                if (text) text.textContent = 'Âm thanh Bão: BẬT';
+                if (isGameActive) {
+                    startAmbientWindSound();
+                    modulateWindAudioBySeverity(stormSeverity);
+                }
+            } else {
+                icon.className = 'fa-solid fa-volume-xmark text-sm text-rose-400';
+                if (text) text.textContent = 'Âm thanh Bão: TẮT';
+                stopAmbientWindSound();
+            }
+        }
+
+        function playWeatherSfx(type) {
+            if (!soundEnabled) return;
+            try {
+                initStormAudio();
+                if (!audioCtx) return;
+                const now = audioCtx.currentTime;
+
+                if (type === 'calm_chime') {
+                    // Uplifting chime when storm weakens
+                    const freqs = [440, 554.37, 659.25, 880];
+                    freqs.forEach((f, idx) => {
+                        const osc = audioCtx.createOscillator();
+                        const gain = audioCtx.createGain();
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(f, now + idx * 0.06);
+                        gain.gain.setValueAtTime(0.11, now + idx * 0.06);
+                        gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.06 + 0.35);
+                        osc.connect(gain);
+                        gain.connect(audioCtx.destination);
+                        osc.start(now + idx * 0.06);
+                        osc.stop(now + idx * 0.06 + 0.36);
+                    });
+                } 
+                else if (type === 'thunder') {
+                    // Deep thunder rumble + crack
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(135, now);
+                    osc.frequency.exponentialRampToValueAtTime(38, now + 0.55);
+                    gain.gain.setValueAtTime(0.24, now);
+                    gain.gain.exponentialRampToValueAtTime(0.005, now + 0.6);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.62);
+                } 
+                else if (type === 'siren') {
+                    // Extreme Tornado / Super Typhoon Dual-Tone Warning Siren
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(440, now);
+                    osc.frequency.linearRampToValueAtTime(820, now + 0.28);
+                    osc.frequency.linearRampToValueAtTime(480, now + 0.55);
+                    gain.gain.setValueAtTime(0.15, now);
+                    gain.gain.exponentialRampToValueAtTime(0.005, now + 0.58);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.6);
+                }
+                else if (type === 'tick') {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(980, now);
+                    gain.gain.setValueAtTime(0.04, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.06);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.07);
+                }
+                else if (type === 'victory_sun') {
+                    const notes = [523.25, 659.25, 783.99, 1046.5, 1318.5];
+                    notes.forEach((f, i) => {
+                        const osc = audioCtx.createOscillator();
+                        const gain = audioCtx.createGain();
+                        osc.type = 'triangle';
+                        osc.frequency.setValueAtTime(f, now + i * 0.09);
+                        gain.gain.setValueAtTime(0.14, now + i * 0.09);
+                        gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.09 + 0.65);
+                        osc.connect(gain);
+                        gain.connect(audioCtx.destination);
+                        osc.start(now + i * 0.09);
+                        osc.stop(now + i * 0.09 + 0.68);
+                    });
+                }
+            } catch (e) {
+                console.warn("Weather SFX skipped:", e);
+            }
+        }
+
+        /* ============================================================================
+           2. HTML5 CANVAS WEATHER SIMULATION (Raindrops & Wind Streaks)
+           ============================================================================ */
+        const weatherCanvas = document.getElementById('weatherCanvas');
+        const wCtx = weatherCanvas.getContext('2d');
+        let raindrops = [];
+        let stormSeverity = 75; // Starts at 75% (Red Alert), 100% = Super Typhoon, 0% = Clear Sky
+
+        function resizeWeatherCanvas() {
+            weatherCanvas.width = window.innerWidth;
+            weatherCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeWeatherCanvas);
+        resizeWeatherCanvas();
+
+        function initRainParticles() {
+            raindrops = [];
+            for (let i = 0; i < 160; i++) {
+                raindrops.push({
+                    x: Math.random() * weatherCanvas.width,
+                    y: Math.random() * weatherCanvas.height,
+                    len: 14 + Math.random() * 22,
+                    speedY: 9 + Math.random() * 10,
+                    opacity: 0.2 + Math.random() * 0.45
+                });
+            }
+        }
+        initRainParticles();
+
+        function animateWeatherCanvas() {
+            wCtx.clearRect(0, 0, weatherCanvas.width, weatherCanvas.height);
+
+            // Calculate active rain count & wind slant from stormSeverity
+            const activeCount = Math.floor((stormSeverity / 100) * raindrops.length);
+            const windSlantX = -((stormSeverity / 100) * 8.5);
+
+            if (activeCount > 0) {
+                wCtx.lineWidth = 1.4;
+                for (let i = 0; i < activeCount; i++) {
+                    const drop = raindrops[i];
+                    wCtx.strokeStyle = `rgba(186, 230, 253, ${drop.opacity})`;
+                    wCtx.beginPath();
+                    wCtx.moveTo(drop.x, drop.y);
+                    wCtx.lineTo(drop.x + windSlantX, drop.y + drop.len);
+                    wCtx.stroke();
+
+                    drop.y += drop.speedY * (0.65 + (stormSeverity / 100) * 0.8);
+                    drop.x += windSlantX;
+
+                    if (drop.y > weatherCanvas.height) {
+                        drop.y = -20;
+                        drop.x = Math.random() * (weatherCanvas.width + 200);
+                    }
+                    if (drop.x < -50) {
+                        drop.x = weatherCanvas.width + 20;
+                    }
+                }
+            }
+            requestAnimationFrame(animateWeatherCanvas);
+        }
+
+        /* */
+        /* ============================================================================
+           3. DIVERSE INTERACTIVE MISSION BANK (NO BORING A/B/C/D MULTIPLE CHOICE!)
+           5 Engaging Gameplay Modes:
+           1. MAP_RADAR: Click directly on the pulsing coordinates on the Vietnam Map!
+           2. TELEGRAPH_FILL: Fill missing data chips into an emergency weather bulletin!
+           3. LAYER_SORT: Arrange altitude belts, sea zones, or seasonal sequences in order!
+           4. PAIR_MATCH: Connect 3 geographic features/stations with their characteristics!
+           5. GAUGE_DIAL: Tune the digital meteorological slider/gauge to the exact textbook figure!
+           ============================================================================ */
+        const STORM_MISSION_BANK = [
+            // ================= MODE 1: ĐỊNH VỊ TRỰC TIẾP TRÊN LƯỢC ĐỒ VIỆT NAM (MAP_RADAR) =================
+            {
+                id: "MAP01", type: "MAP_RADAR", timeLimit: 20,
+                mechanicName: "ĐỊNH VỊ RADAR TRÊN LƯỢC ĐỒ",
+                diffLabel: "Tương tác Bản đồ (20s)",
+                topic: "Bài 1: Vị trí địa lí & Các điểm cực",
+                prompt: "Không khí lạnh đang tràn xuống biên giới phía Bắc! Hãy NHẤN TRỰC TIẾP vào trạm radar tại Điểm cực Bắc (23°23'B - xã Lũng Cú, tỉnh Tuyên Quang) trên Lược đồ Việt Nam bên trái để kích hoạt lá chắn!",
+                pins: [
+                    { id: "P1", label: "Trạm A", x: 154, y: 20, isCorrect: true, placeName: "Xã Lũng Cú, tỉnh Tuyên Quang (23°23'B)" },
+                    { id: "P2", label: "Trạm B", x: 58, y: 58, isCorrect: false, placeName: "Xã Sín Thầu, tỉnh Điện Biên (Cực Tây)" },
+                    { id: "P3", label: "Trạm C", x: 245, y: 92, isCorrect: false, placeName: "Vùng ven biển Quảng Ninh" },
+                    { id: "P4", label: "Trạm D", x: 298, y: 404, isCorrect: false, placeName: "Xã Đại Lãnh, tỉnh Khánh Hòa (Cực Đông)" }
+                ],
+                mitigationHint: "Quan sát đỉnh cao nhất ở phía Bắc trên Lược đồ Việt Nam (Trạm A - vĩ độ 23°23'B thuộc xã Lũng Cú, tỉnh Tuyên Quang theo SGK trang 5).",
+                explanation: "Định vị chuẩn xác! Điểm cực Bắc nằm ở vĩ độ 23°23'B tại xã Lũng Cú, tỉnh Tuyên Quang (SGK trang 5)."
+            },
+            {
+                id: "MAP02", type: "MAP_RADAR", timeLimit: 20,
+                mechanicName: "ĐỊNH VỊ RADAR TRÊN LƯỢC ĐỒ",
+                diffLabel: "Tương tác Bản đồ (20s)",
+                topic: "Bài 1: Vị trí địa lí & Các điểm cực",
+                prompt: "Tâm bão từ Biển Đông đang tiến vào nơi đón ánh mặt trời đầu tiên trên đất liền! Hãy NHẤN TRỰC TIẾP vào Điểm cực Đông (109°28'Đ - xã Đại Lãnh, tỉnh Khánh Hòa) trên lược đồ!",
+                pins: [
+                    { id: "P1", label: "Trạm A", x: 300, y: 404, isCorrect: true, placeName: "Xã Đại Lãnh, tỉnh Khánh Hòa (109°28'Đ)" },
+                    { id: "P2", label: "Trạm B", x: 215, y: 252, isCorrect: false, placeName: "Vùng ven biển Quảng Trị - Huế" },
+                    { id: "P3", label: "Trạm C", x: 145, y: 552, isCorrect: false, placeName: "Xã Đất Mũi, tỉnh Cà Mau (Cực Nam)" },
+                    { id: "P4", label: "Trạm D", x: 358, y: 245, isCorrect: false, placeName: "Quần đảo Hoàng Sa (TP. Đà Nẵng)" }
+                ],
+                mitigationHint: "Điểm cực Đông trên đất liền nhô ra xa nhất về phía Biển Đông ở ven biển Nam Trung Bộ (Trạm A - kinh độ 109°28'Đ tại xã Đại Lãnh, tỉnh Khánh Hòa).",
+                explanation: "Tuyệt vời! Điểm cực Đông trên đất liền nằm ở kinh độ 109°28'Đ tại xã Đại Lãnh, tỉnh Khánh Hòa."
+            },
+            {
+                id: "MAP03", type: "MAP_RADAR", timeLimit: 20,
+                mechanicName: "ĐỊNH VỊ RADAR TRÊN LƯỢC ĐỒ",
+                diffLabel: "Tương tác Bản đồ (20s)",
+                topic: "Bài 3: Thiên nhiên phân hóa Bắc – Nam",
+                prompt: "Gió mùa Đông Bắc đang suy yếu dần khi tiến về phía Nam! Hãy NHẤN TRỰC TIẾP vào trạm radar tại dãy núi Bạch Mã (vĩ tuyến 16°B) — ranh giới tự nhiên phân chia miền Bắc và miền Nam!",
+                pins: [
+                    { id: "P1", label: "Trạm A", x: 132, y: 72, isCorrect: false, placeName: "Dãy Hoàng Liên Sơn (Tây Bắc)" },
+                    { id: "P2", label: "Trạm B", x: 222, y: 262, isCorrect: true, placeName: "Dãy núi Bạch Mã (khoảng vĩ tuyến 16°B)" },
+                    { id: "P3", label: "Trạm C", x: 245, y: 375, isCorrect: false, placeName: "Khu vực cao nguyên Tây Nguyên" },
+                    { id: "P4", label: "Trạm D", x: 168, y: 515, isCorrect: false, placeName: "Đồng bằng sông Cửu Long" }
+                ],
+                mitigationHint: "Dãy núi Bạch Mã nằm ở khoảng vĩ tuyến 16°B (khu vực Huế - Đà Nẵng ở khúc eo miền Trung, tương ứng với Trạm B trên lược đồ).",
+                explanation: "Chính xác! Dãy núi Bạch Mã là bức chắn địa hình chặn gió mùa Đông Bắc và là ranh giới tự nhiên phân chia lãnh thổ phía Bắc và phía Nam."
+            },
+            {
+                id: "MAP04", type: "MAP_RADAR", timeLimit: 22,
+                mechanicName: "ĐỊNH VỊ RADAR TRÊN LƯỢC ĐỒ",
+                diffLabel: "Tương tác Bản đồ (22s)",
+                topic: "Bài 3: Đai ôn đới gió mùa trên núi",
+                prompt: "Cần đặt trạm đo nhiệt độ băng giá mùa đông dưới 5°C ở Đai ôn đới gió mùa trên núi (từ 2.600 m trở lên)! Hãy NHẤN TRỰC TIẾP vào vị trí dãy Hoàng Liên Sơn (đỉnh Phan-xi-păng 3.147 m) trên lược đồ!",
+                pins: [
+                    { id: "P1", label: "Trạm A", x: 122, y: 66, isCorrect: true, placeName: "Dãy Hoàng Liên Sơn (Đỉnh Phan-xi-păng 3.147 m)" },
+                    { id: "P2", label: "Trạm B", x: 205, y: 68, isCorrect: false, placeName: "Vùng đồi núi thấp cánh cung Đông Bắc" },
+                    { id: "P3", label: "Trạm C", x: 196, y: 125, isCorrect: false, placeName: "Đồng bằng châu thổ sông Hồng" },
+                    { id: "P4", label: "Trạm D", x: 252, y: 365, isCorrect: false, placeName: "Các cao nguyên badan Tây Nguyên" }
+                ],
+                mitigationHint: "Dãy Hoàng Liên Sơn nằm ở vùng núi Tây Bắc (phía tây sông Hồng, ứng với Trạm A ở phía bắc tây bắc trên lược đồ).",
+                explanation: "Chuẩn xác! Đai ôn đới gió mùa trên núi (từ 2.600 m trở lên) chỉ có ở dãy Hoàng Liên Sơn với đỉnh Phan-xi-păng cao 3.147 m."
+            },
+            {
+                id: "MAP05", type: "MAP_RADAR", timeLimit: 20,
+                mechanicName: "ĐỊNH VỊ RADAR TRÊN LƯỢC ĐỒ",
+                diffLabel: "Tương tác Bản đồ (20s)",
+                topic: "Bài 1: Chủ quyền Biển Đảo Việt Nam",
+                prompt: "Cần phát tín hiệu cảnh báo bão khẩn cấp cho ngư dân tại Quần đảo Hoàng Sa (thuộc thành phố Đà Nẵng)! Hãy NHẤN TRỰC TIẾP vào trạm radar tại Quần đảo Hoàng Sa trên lược đồ!",
+                pins: [
+                    { id: "P1", label: "Trạm A", x: 358, y: 245, isCorrect: true, placeName: "Quần đảo Hoàng Sa (TP. Đà Nẵng)" },
+                    { id: "P2", label: "Trạm B", x: 360, y: 468, isCorrect: false, placeName: "Quần đảo Trường Sa (Tỉnh Khánh Hòa)" },
+                    { id: "P3", label: "Trạm C", x: 110, y: 486, isCorrect: false, placeName: "Đảo Phú Quốc (Vịnh Thái Lan)" },
+                    { id: "P4", label: "Trạm D", x: 204, y: 542, isCorrect: false, placeName: "Quần đảo Côn Đảo" }
+                ],
+                mitigationHint: "Nhìn ra vùng Biển Đông phía đông miền Trung (ngang tầm Đà Nẵng): Quần đảo Hoàng Sa nằm ở phía Bắc (Trạm A), còn Trường Sa nằm ở phía Nam (Trạm B).",
+                explanation: "Chính xác! Quần đảo Hoàng Sa trực thuộc thành phố Đà Nẵng và quần đảo Trường Sa trực thuộc tỉnh Khánh Hòa (SGK trang 7)."
+            },
+            {
+                id: "MAP06", type: "MAP_RADAR", timeLimit: 22,
+                mechanicName: "ĐỊNH VỊ RADAR TRÊN LƯỢC ĐỒ",
+                diffLabel: "Tương tác Bản đồ (22s)",
+                topic: "Bài 3: Thiên nhiên phân hóa Bắc – Nam",
+                prompt: "Mùa khô sâu sắc đang diễn ra tại vùng có các cao nguyên badan xếp tầng và kiểu 'rừng thưa nhiệt đới khô (rừng khộp)' đặc trưng nhất nước ta! Hãy NHẤN TRỰC TIẾP vào khu vực Tây Nguyên trên lược đồ!",
+                pins: [
+                    { id: "P1", label: "Trạm A", x: 185, y: 55, isCorrect: false, placeName: "Vùng núi Đông Bắc Bắc Bộ" },
+                    { id: "P2", label: "Trạm B", x: 175, y: 195, isCorrect: false, placeName: "Đồng bằng ven biển Bắc Trung Bộ" },
+                    { id: "P3", label: "Trạm C", x: 254, y: 375, isCorrect: true, placeName: "Khu vực Tây Nguyên (Rừng khộp & Cao nguyên badan)" },
+                    { id: "P4", label: "Trạm D", x: 162, y: 515, isCorrect: false, placeName: "Đồng bằng sông Cửu Long (Rừng ngập mặn, rừng tràm)" }
+                ],
+                mitigationHint: "Khu vực Tây Nguyên nằm ở phía tây dãy Trường Sơn Nam (giáp biên giới Hạ Lào và Đông Bắc Campuchia, ứng với Trạm C).",
+                explanation: "Chính xác! Khu vực Tây Nguyên nổi bật với các cao nguyên badan xếp tầng và kiểu rừng thưa nhiệt đới khô (rừng khộp)."
+            },
+
+            // ================= MODE 2: GIẢI MÃ CÔNG ĐIỆN KHÍ TƯỢNG (TELEGRAPH_FILL) =================
+            {
+                id: "TEL01", type: "TELEGRAPH_FILL", timeLimit: 25,
+                mechanicName: "GIẢI MÃ CÔNG ĐIỆN KHẨN",
+                diffLabel: "Điền khuyết Công điện (25s)",
+                topic: "Bài 2: Hoạt động của gió mùa đông",
+                prompt: "Bản tin dự báo gió mùa Đông Bắc bị nhiễu sóng mất 2 cụm từ quan trọng! Hãy chạm vào các thẻ dữ liệu bên dưới để điền đúng vào chỗ trống [1] và [2]:",
+                templateParts: [
+                    "Vào nửa đầu mùa đông, khối khí lạnh từ áp cao Xi-bia đi qua lục địa Trung Hoa nên gây thời tiết ",
+                    " cho miền Bắc; còn vào nửa sau mùa đông, khối khí này di chuyển lệch về phía đông qua biển nên gây thời tiết ",
+                    " ở vùng ven biển và đồng bằng sông Hồng."
+                ],
+                wordBank: [
+                    "lạnh khô",
+                    "lạnh ẩm, có mưa phùn",
+                    "nóng khô (gió phơn)",
+                    "mưa rào nhiệt đới"
+                ],
+                correctWords: ["lạnh khô", "lạnh ẩm, có mưa phùn"],
+                mitigationHint: "Xem mục Gió mùa đông (SGK trang 11): Nửa đầu mùa đông qua lục địa nên [1] = 'lạnh khô'; nửa sau mùa đông qua biển mang hơi ẩm nên [2] = 'lạnh ẩm, có mưa phùn'.",
+                explanation: "Giải mã công điện hoàn hảo! Nửa đầu mùa đông thời tiết lạnh khô; nửa sau mùa đông thời tiết lạnh ẩm, có mưa phùn ở ven biển và đồng bằng sông Hồng."
+            },
+            {
+                id: "TEL02", type: "TELEGRAPH_FILL", timeLimit: 25,
+                mechanicName: "GIẢI MÃ CÔNG ĐIỆN KHẨN",
+                diffLabel: "Điền khuyết Công điện (25s)",
+                topic: "Bài 2: Quá trình hình thành đất Feralit",
+                prompt: "Hoàn thành công điện phân tích mẫu đất vùng đồi núi thấp bằng cách chọn đúng 2 cụm từ hóa học điền vào [1] và [2]:",
+                templateParts: [
+                    "Trong điều kiện nhiệt ẩm cao, mưa nhiều làm rửa trôi các ",
+                    " làm đất dễ bị chua; đồng thời tích tụ ",
+                    " tạo nên màu đỏ vàng đặc trưng của đất feralit."
+                ],
+                wordBank: [
+                    "chất ba-dơ dễ tan (Ca²⁺, Mg²⁺, Na⁺, K⁺)",
+                    "ô-xít sắt (Fe₂O₃) và ô-xít nhôm (Al₂O₃)",
+                    "phù sa sông màu mỡ",
+                    "đá mẹ a-xít nguyên sinh"
+                ],
+                correctWords: [
+                    "chất ba-dơ dễ tan (Ca²⁺, Mg²⁺, Na⁺, K⁺)",
+                    "ô-xít sắt (Fe₂O₃) và ô-xít nhôm (Al₂O₃)"
+                ],
+                mitigationHint: "Xem mục 4. Đất (SGK trang 15): Mưa nhiều rửa trôi các 'chất ba-dơ dễ tan (Ca²⁺, Mg²⁺, Na⁺, K⁺)' và tích tụ 'ô-xít sắt (Fe₂O₃) và ô-xít nhôm (Al₂O₃)'.",
+                explanation: "Chính xác 100%! Đây là cơ chế cốt lõi của quá trình feralit ở vùng đồi núi thấp nước ta."
+            },
+            {
+                id: "TEL03", type: "TELEGRAPH_FILL", timeLimit: 25,
+                mechanicName: "GIẢI MÃ CÔNG ĐIỆN KHẨN",
+                diffLabel: "Điền khuyết Công điện (25s)",
+                topic: "Bài 1: Phạm vi lãnh thổ & Đơn vị hành chính",
+                prompt: "Cập nhật hồ sơ hành chính quốc gia trong bản tin chống bão (theo Nghị quyết 202/2025/QH15 trang 8 SGK) bằng cách điền vào [1] và [2]:",
+                templateParts: [
+                    "Tổng diện tích vùng đất của Việt Nam là ",
+                    "; theo Nghị quyết số 202/2025/QH15 ngày 12/6/2025 của Quốc hội, nước ta có ",
+                    " đơn vị hành chính cấp tỉnh."
+                ],
+                wordBank: [
+                    "hơn 331 nghìn km²",
+                    "34 đơn vị (28 tỉnh và 06 thành phố)",
+                    "khoảng 1 triệu km²",
+                    "63 đơn vị (58 tỉnh và 05 thành phố)"
+                ],
+                correctWords: [
+                    "hơn 331 nghìn km²",
+                    "34 đơn vị (28 tỉnh và 06 thành phố)"
+                ],
+                mitigationHint: "Xem trang 7 & trang 8 SGK: Tổng diện tích vùng đất là 'hơn 331 nghìn km²' (1 triệu km² là vùng biển) và có '34 đơn vị (28 tỉnh và 06 thành phố)'.",
+                explanation: "Tuyệt vời! Bạn đã nắm rất chắc số liệu diện tích vùng đất và Nghị quyết 202/2025/QH15 trong SGK mới."
+            },
+            {
+                id: "TEL04", type: "TELEGRAPH_FILL", timeLimit: 25,
+                mechanicName: "GIẢI MÃ CÔNG ĐIỆN KHẨN",
+                diffLabel: "Điền khuyết Công điện (25s)",
+                topic: "Bài 2: Hoạt động của gió mùa hạ",
+                prompt: "Điền đúng 2 khu vực địa lí vào chỗ trống [1] và [2] để dự báo tác động của khối khí Bắc Ấn Độ Dương vào đầu mùa hạ:",
+                templateParts: [
+                    "Đầu mùa hạ, khối khí nhiệt đới ẩm từ Bắc Ấn Độ Dương (vịnh Ben-gan) thổi hướng tây nam gây mưa lớn cho ",
+                    ", sau khi vượt qua bức chắn dãy Trường Sơn thì gây hiệu ứng khô nóng (gió phơn Tây Nam/gió Lào) ở ",
+                    "."
+                ],
+                wordBank: [
+                    "Nam Bộ và Tây Nguyên",
+                    "đồng bằng ven biển Trung Bộ và phần nam Tây Bắc",
+                    "vùng núi Đông Bắc Bắc Bộ",
+                    "đồng bằng châu thổ sông Hồng"
+                ],
+                correctWords: [
+                    "Nam Bộ và Tây Nguyên",
+                    "đồng bằng ven biển Trung Bộ và phần nam Tây Bắc"
+                ],
+                mitigationHint: "Xem mục Gió mùa hạ (SGK trang 12): Sườn đón gió Tây Nam gây mưa lớn là 'Nam Bộ và Tây Nguyên'; sườn khuất gió bị khô nóng là 'đồng bằng ven biển Trung Bộ và phần nam Tây Bắc'.",
+                explanation: "Chính xác! Dãy Trường Sơn tạo nên hiệu ứng phơn làm gió Tây Nam trở nên khô nóng khi tràn xuống ven biển Trung Bộ và nam Tây Bắc."
+            },
+            {
+                id: "TEL05", type: "TELEGRAPH_FILL", timeLimit: 25,
+                mechanicName: "GIẢI MÃ CÔNG ĐIỆN KHẨN",
+                diffLabel: "Điền khuyết Công điện (25s)",
+                topic: "Bài 3: Thiên nhiên phân hóa theo độ cao",
+                prompt: "Hoàn thành công điện khảo sát độ cao Đai nhiệt đới gió mùa giữa hai miền Bắc – Nam (SGK trang 20) vào ô [1] và [2]:",
+                templateParts: [
+                    "Do miền Bắc có mùa đông lạnh nên Đai nhiệt đới gió mùa ở miền Bắc có độ cao trung bình từ khoảng ",
+                    " trở xuống; trong khi ở miền Nam nền nhiệt cao hơn nên đai này đạt tới độ cao từ khoảng ",
+                    " trở xuống."
+                ],
+                wordBank: [
+                    "600 – 700 m",
+                    "900 – 1.000 m",
+                    "1.600 – 1.700 m",
+                    "2.600 m"
+                ],
+                correctWords: ["600 – 700 m", "900 – 1.000 m"],
+                mitigationHint: "Xem mục 3. Thiên nhiên phân hóa theo độ cao (SGK trang 20): Ở miền Bắc là '600 – 700 m' trở xuống; ở miền Nam là '900 – 1.000 m' trở xuống.",
+                explanation: "Chuẩn xác! Giới hạn đai nhiệt đới gió mùa ở miền Bắc (600 – 700 m) thấp hơn miền Nam (900 – 1.000 m)."
+            },
+
+            // ================= MODE 3: SẮP XẾP PHÂN TẦNG ĐỊA LÍ (LAYER_SORT) =================
+            {
+                id: "SORT01", type: "LAYER_SORT", timeLimit: 28,
+                mechanicName: "SẮP XẾP TRÌNH TỰ ĐỊA LÍ",
+                diffLabel: "Xếp thứ tự 5 vùng biển (28s)",
+                topic: "Bài 1: Các bộ phận vùng biển Việt Nam",
+                prompt: "Để tàu cứu hộ di chuyển từ ĐẤT LIỀN (bờ biển) tiến dần ra khơi xa theo Luật Biển Việt Nam 2012, hãy chạm chọn lần lượt 5 bộ phận vùng biển theo đúng thứ tự từ trong ra ngoài:",
+                items: [
+                    "Nội thủy (tiếp giáp bờ biển, phía trong đường cơ sở)",
+                    "Lãnh hải (rộng 12 hải lí tính từ đường cơ sở)",
+                    "Vùng tiếp giáp lãnh hải (rộng 12 hải lí ngoài lãnh hải)",
+                    "Vùng đặc quyền kinh tế (hợp với lãnh hải rộng 200 hải lí)",
+                    "Thềm lục địa (đáy biển và lòng đất dưới đáy biển kéo dài)"
+                ],
+                mitigationHint: "Đối chiếu Hình 1.2 (SGK trang 7) từ bờ biển đi ra: (1) Nội thủy -> (2) Lãnh hải -> (3) Vùng tiếp giáp lãnh hải -> (4) Vùng đặc quyền kinh tế -> (5) Thềm lục địa.",
+                explanation: "Sắp xếp hoàn hảo! 5 bộ phận vùng biển nước ta từ đất liền ra ngoài khơi gồm: Nội thủy -> Lãnh hải -> Vùng tiếp giáp lãnh hải -> Vùng đặc quyền kinh tế -> Thềm lục địa."
+            },
+            {
+                id: "SORT02", type: "LAYER_SORT", timeLimit: 25,
+                mechanicName: "SẮP XẾP TRÌNH TỰ ĐỊA LÍ",
+                diffLabel: "Phân tầng theo độ cao (25s)",
+                topic: "Bài 3: Sự phân tầng đất theo độ cao",
+                prompt: "Đoàn khảo sát địa chất leo từ chân núi lên đỉnh Phan-xi-păng (3.147 m)! Hãy chạm chọn 4 tầng đất theo đúng thứ tự độ cao TỪ THẤP LÊN CAO (từ chân núi lên đỉnh núi):",
+                items: [
+                    "Đất phù sa và đất feralit đỏ vàng (dưới 600 – 700 m ở miền Bắc)",
+                    "Đất feralit có mùn (từ 600 – 700 m đến 1.600 – 1.700 m)",
+                    "Đất mùn (từ trên 1.600 – 1.700 m đến 2.600 m)",
+                    "Đất mùn thô (từ độ cao 2.600 m trở lên)"
+                ],
+                mitigationHint: "Xem trang 20 SGK: Chân núi là 'Đất phù sa và đất feralit đỏ vàng' -> lên đai cận nhiệt thấp là 'Đất feralit có mùn' -> lên cao hơn 1.600m là 'Đất mùn' -> trên 2.600m là 'Đất mùn thô'.",
+                explanation: "Xuất sắc! Càng lên cao nhiệt độ càng giảm, quá trình phân hủy chất hữu cơ chậm lại tạo nên sự chuyển tiếp từ đất feralit đỏ vàng -> đất feralit có mùn -> đất mùn -> đất mùn thô."
+            },
+            {
+                id: "SORT03", type: "LAYER_SORT", timeLimit: 25,
+                mechanicName: "SẮP XẾP TRÌNH TỰ ĐỊA LÍ",
+                diffLabel: "Phân tầng 3 đai cao (25s)",
+                topic: "Bài 3: Chỉ số nhiệt độ 3 đai cao",
+                prompt: "Hãy sắp xếp 3 đai cao tự nhiên ở nước ta theo chiều TỪ ĐỈNH NÚI CAO XUỐNG ĐỒNG BẰNG THẤP (từ nơi lạnh nhất xuống nơi có tổng nhiệt độ năm cao nhất):",
+                items: [
+                    "Đai ôn đới gió mùa trên núi (Tổng nhiệt độ < 4.500°C, quanh năm < 15°C)",
+                    "Đai cận nhiệt đới gió mùa trên núi (Tổng nhiệt độ 4.500°C – 7.500°C, mùa hạ mát)",
+                    "Đai nhiệt đới gió mùa (Tổng nhiệt độ > 7.500°C, mùa hạ nóng > 25°C)"
+                ],
+                mitigationHint: "Chú ý đề bài yêu cầu xếp TỪ ĐỈNH NÚI CAO XUỐNG THẤP: (1) Đai ôn đới (< 4.500°C) -> (2) Đai cận nhiệt đới (4.500°C – 7.500°C) -> (3) Đai nhiệt đới (> 7.500°C).",
+                explanation: "Chính xác! Từ đỉnh núi cao xuống chân núi là Đai ôn đới gió mùa trên núi -> Đai cận nhiệt đới gió mùa trên núi -> Đai nhiệt đới gió mùa."
+            },
+            {
+                id: "SORT04", type: "LAYER_SORT", timeLimit: 25,
+                mechanicName: "SẮP XẾP TRÌNH TỰ ĐỊA LÍ",
+                diffLabel: "Phân hóa Đông – Tây (25s)",
+                topic: "Bài 3: Thiên nhiên phân hóa theo chiều Đông – Tây",
+                prompt: "Khi một cơn bão di chuyển từ ngoài khơi Biển Đông đi sâu vào biên giới phía Tây đất liền nước ta, nó sẽ lần lượt đi qua 3 dải địa hình nào theo thứ tự TỪ ĐÔNG SANG TÂY?",
+                items: [
+                    "Vùng biển và thềm lục địa (gấp 3 lần diện tích đất liền, độ nông – sâu thay đổi)",
+                    "Vùng đồng bằng (đồng bằng châu thổ rộng lớn và dải đồng bằng ven biển)",
+                    "Vùng đồi núi (phân hóa phức tạp theo hướng sườn đón gió và khuất gió)"
+                ],
+                mitigationHint: "Xem mục 2. Thiên nhiên phân hóa theo chiều đông – tây (SGK trang 19): Từ biển vào đất liền là (1) Vùng biển và thềm lục địa -> (2) Vùng đồng bằng -> (3) Vùng đồi núi.",
+                explanation: "Hoàn toàn chính xác! Từ đông sang tây (từ biển vào đất liền), thiên nhiên nước ta phân hóa thành 3 dải: Vùng biển và thềm lục địa -> Vùng đồng bằng -> Vùng đồi núi."
+            },
+
+            // ================= MODE 4: GHÉP NỐI TRẠM DỮ LIỆU (PAIR_MATCH) =================
+            {
+                id: "PAIR01", type: "PAIR_MATCH", timeLimit: 30,
+                mechanicName: "GHÉP NỐI TRẠM DỮ LIỆU",
+                diffLabel: "Ghép 3 cặp Tọa độ Cực (30s)",
+                topic: "Bài 1: Các điểm cực trên đất liền",
+                prompt: "Hãy kết nối chính xác 3 Điểm cực trên đất liền (cột trái) với Tọa độ & Địa danh hành chính tương ứng (cột phải) theo SGK trang 5:",
+                pairs: [
+                    { left: "Điểm cực Nam", right: "8°34'B - Xã Đất Mũi, tỉnh Cà Mau" },
+                    { left: "Điểm cực Tây", right: "102°09'Đ - Xã Sín Thầu, tỉnh Điện Biên" },
+                    { left: "Điểm cực Đông", right: "109°28'Đ - Xã Đại Lãnh, tỉnh Khánh Hòa" }
+                ],
+                mitigationHint: "Xem trang 5 SGK: Cực Nam ở 8°34'B (Đất Mũi, Cà Mau); Cực Tây ở 102°09'Đ (Sín Thầu, Điện Biên); Cực Đông ở 109°28'Đ (Đại Lãnh, Khánh Hòa).",
+                explanation: "Kết nối hoàn hảo cả 3 trạm tọa độ điểm cực trên đất liền Việt Nam!"
+            },
+            {
+                id: "PAIR02", type: "PAIR_MATCH", timeLimit: 30,
+                mechanicName: "GHÉP NỐI TRẠM DỮ LIỆU",
+                diffLabel: "Ghép 3 Miền tự nhiên (30s)",
+                topic: "Bài 3: Đặc trưng 3 miền địa lí tự nhiên",
+                prompt: "Hãy ghép nối từng Miền địa lí tự nhiên (cột trái) với Đặc điểm địa hình & khoáng sản đặc trưng nhất của miền đó (cột phải):",
+                pairs: [
+                    { left: "Miền Bắc & Đông Bắc Bắc Bộ", right: "Đồi núi thấp hướng vòng cung; giàu than đá (Quảng Ninh, Thái Nguyên)" },
+                    { left: "Miền Tây Bắc & Bắc Trung Bộ", right: "Núi cao hướng tây bắc – đông nam, đủ 3 đai cao; crôm (Thanh Hóa), thiếc (Nghệ An)" },
+                    { left: "Miền Nam Trung Bộ & Nam Bộ", right: "Cao nguyên badan xếp tầng & ĐBSCL kênh rạch chằng chịt; dầu khí, bô-xít" }
+                ],
+                mitigationHint: "Xem trang 21–24 SGK: Đông Bắc có cánh cung & than đá; Tây Bắc - BTB có núi cao đủ 3 đai cao & crôm/thiếc; Nam Trung Bộ & Nam Bộ có cao nguyên badan, dầu khí & bô-xít.",
+                explanation: "Xuất sắc! Bạn đã phân biệt cực kỳ rõ đặc trưng địa hình và khoáng sản của 3 miền địa lí tự nhiên."
+            },
+            {
+                id: "PAIR03", type: "PAIR_MATCH", timeLimit: 28,
+                mechanicName: "GHÉP NỐI TRẠM DỮ LIỆU",
+                diffLabel: "Ghép Bảng số liệu Khí tượng (28s)",
+                topic: "Bài 2: Bảng số liệu khí hậu 2.1 & 2.2",
+                prompt: "Dựa vào Bảng 2.1 và 2.2 (SGK trang 10 – 11), hãy ghép nối từng Trạm khí tượng (cột trái) với Kỷ lục số liệu khí hậu tương ứng (cột phải):",
+                pairs: [
+                    { left: "Trạm Huế", right: "Tổng lượng mưa năm lớn nhất (2.936 mm) và độ ẩm cao nhất (84%)" },
+                    { left: "Trạm Quy Nhơn (Gia Lai)", right: "Tổng số giờ nắng năm cao nhất (2.445 giờ) và nhiệt độ TB 27,1°C" },
+                    { left: "Trạm Lạng Sơn", right: "Nhiệt độ TB năm thấp nhất (21,3°C) và lượng mưa ít nhất (1.318 mm)" }
+                ],
+                mitigationHint: "Xem Bảng 2.1 & 2.2 (trang 10–11 SGK): Huế mưa nhiều nhất (2.936 mm); Quy Nhơn nắng nhiều nhất (2.445 giờ); Lạng Sơn ở vùng núi phía Bắc nên nhiệt độ thấp nhất (21,3°C).",
+                explanation: "Chính xác! Việc nắm vững đặc điểm số liệu các trạm tiêu biểu giúp bạn đọc bảng thống kê khí hậu rất nhanh."
+            },
+            {
+                id: "PAIR04", type: "PAIR_MATCH", timeLimit: 28,
+                mechanicName: "GHÉP NỐI TRẠM DỮ LIỆU",
+                diffLabel: "Ghép Cơ chế Gió (28s)",
+                topic: "Bài 2: Hoàn lưu gió mùa và Tín phong",
+                prompt: "Hãy ghép nối từng Loại gió hoạt động ở nước ta (cột trái) với Nguồn gốc & Hệ quả thời tiết đặc trưng (cột phải):",
+                pairs: [
+                    { left: "Gió mùa Đông Bắc", right: "Từ áp cao Xi-bia (50°B) thổi theo từng đợt, tạo mùa đông lạnh ở miền Bắc" },
+                    { left: "Tín phong bán cầu Bắc", right: "Thổi hướng đông bắc chiếm ưu thế từ Đà Nẵng trở vào, gây mưa cho Trung Bộ" },
+                    { left: "Gió mùa Tây Nam (giữa & cuối hạ)", right: "Từ áp cao cận chí tuyến bán cầu Nam; vào ĐB sông Hồng chuyển hướng đông nam" }
+                ],
+                mitigationHint: "Xem trang 11–12 SGK: Gió mùa Đông Bắc từ áp cao Xi-bia; Tín phong bán cầu Bắc gây mưa cho Trung Bộ và tạo mùa khô ở Nam Bộ/Tây Nguyên; Gió mùa Tây Nam giữa/cuối hạ từ áp cao cận chí tuyến bán cầu Nam.",
+                explanation: "Tuyệt vời! Bạn đã làm chủ hoàn toàn cơ chế hoạt động của các khối khí theo mùa ở Việt Nam."
+            },
+            {
+                id: "PAIR05", type: "PAIR_MATCH", timeLimit: 28,
+                mechanicName: "GHÉP NỐI TRẠM DỮ LIỆU",
+                diffLabel: "Ghép Hướng sông & Thềm lục địa (28s)",
+                topic: "Bài 3: Sông ngòi & Hình thái Thềm lục địa",
+                prompt: "Hãy ghép nối từng Khu vực tự nhiên (cột trái) với Đặc điểm sông ngòi / thềm lục địa chính xác (cột phải):",
+                pairs: [
+                    { left: "Sông Hồng và sông Chảy", right: "Chảy theo hướng tây bắc – đông nam" },
+                    { left: "Sông Lô, sông Gâm, sông Lục Nam", right: "Chảy theo hướng vòng cung ở khu vực Đông Bắc" },
+                    { left: "Thềm lục địa ven biển Nam Trung Bộ", right: "Thu hẹp nhất và sâu do các nhánh núi ăn lan sát biển" }
+                ],
+                mitigationHint: "Xem trang 19 và trang 22 SGK: Sông Hồng, sông Chảy chảy hướng tây bắc – đông nam; sông Lô, Gâm, Lục Nam chảy hướng vòng cung; thềm lục địa Nam Trung Bộ thu hẹp nhất.",
+                explanation: "Ghép nối chính xác 100%! Đây là các chi tiết rất hay xuất hiện trong các câu hỏi phân hóa thiên nhiên."
+            },
+
+            // ================= MODE 5: ĐIỀU CHỈNH ĐỒNG HỒ ĐO KHÍ TƯỢNG – THỦY VĂN (GAUGE_DIAL) =================
+            {
+                id: "DIAL01", type: "GAUGE_DIAL", timeLimit: 20,
+                mechanicName: "ĐIỀU CHỈNH MÁY ĐO THỦY VĂN",
+                diffLabel: "Chỉnh thông số Sông ngòi (20s)",
+                topic: "Bài 2: Sông ngòi nhiệt đới ẩm gió mùa",
+                prompt: "Cần hiệu chỉnh thông số cho Trạm Thủy Văn Quốc Gia: Tổng lượng nước hằng năm của hệ thống sông ngòi nước ta đạt khoảng bao nhiêu tỉ m³/năm? Hãy kéo thanh trượt đến con số chính xác rồi bấm XÁC NHẬN:",
+                min: 100, max: 1200, step: 1,
+                presets: [200, 500, 839, 1060],
+                targetValue: 839,
+                unit: "tỉ m³/năm",
+                mitigationHint: "Xem mục 3. Sông ngòi (SGK trang 14): 200 là triệu tấn phù sa, còn tổng lượng nước là 839 tỉ m³/năm! Bạn có thể bấm nút mốc 839 hoặc kéo thanh trượt.",
+                explanation: "Hiệu chỉnh chính xác! Tổng lượng nước của sông ngòi nước ta đạt khoảng 839 tỉ m³/năm (và khoảng 200 triệu tấn phù sa/năm)."
+            },
+            {
+                id: "DIAL02", type: "GAUGE_DIAL", timeLimit: 20,
+                mechanicName: "ĐIỀU CHỈNH MÁY ĐO BIỂN ĐẢO",
+                diffLabel: "Chỉnh thông số Luật Biển (20s)",
+                topic: "Bài 1: Vùng đặc quyền kinh tế trên biển",
+                prompt: "Theo Luật Biển Việt Nam năm 2012, Vùng đặc quyền kinh tế hợp với Lãnh hải thành một vùng biển có tổng chiều rộng bao nhiêu hải lí tính từ đường cơ sở? Hãy điều chỉnh máy đo đến con số chính xác:",
+                min: 12, max: 350, step: 1,
+                presets: [12, 24, 200, 350],
+                targetValue: 200,
+                unit: "hải lí",
+                mitigationHint: "Xem Hình 1.2 (SGK trang 7): Lãnh hải rộng 12 hải lí, vùng tiếp giáp lãnh hải 12 hải lí, còn Vùng đặc quyền kinh tế hợp với lãnh hải rộng 200 hải lí tính từ đường cơ sở!",
+                explanation: "Chuẩn xác! Vùng đặc quyền kinh tế hợp với lãnh hải thành một vùng biển có chiều rộng 200 hải lí tính từ đường cơ sở."
+            },
+            {
+                id: "DIAL03", type: "GAUGE_DIAL", timeLimit: 20,
+                mechanicName: "ĐIỀU CHỈNH MÁY ĐO ĐỘ CAO",
+                diffLabel: "Chỉnh thông số Đỉnh núi (20s)",
+                topic: "Bài 3: Đỉnh núi Phan-xi-păng (Em có biết)",
+                prompt: "Theo số liệu do Cục Đo đạc, Bản đồ và Thông tin địa lí Việt Nam công bố năm 2019 (SGK trang 22), độ cao chính xác của đỉnh núi Phan-xi-păng là bao nhiêu mét?",
+                min: 2600, max: 3300, step: 1,
+                presets: [2600, 3143, 3147, 3250],
+                targetValue: 3147,
+                unit: "m",
+                mitigationHint: "Xem hộp 'Em có biết?' (SGK trang 22): Năm 1909 đo là 3.143 m, còn năm 2019 công bố độ cao mới là 3.147 m!",
+                explanation: "Chính xác! Độ cao của đỉnh Phan-xi-păng công bố năm 2019 là 3.147 m (cao hơn 4m so với số đo 3.143 m năm 1909)."
+            },
+            {
+                id: "DIAL04", type: "GAUGE_DIAL", timeLimit: 20,
+                mechanicName: "ĐIỀU CHỈNH MÁY ĐO THỦY VĂN",
+                diffLabel: "Chỉnh thông số Sông ngòi (20s)",
+                topic: "Bài 2: Mạng lưới sông ngòi Việt Nam",
+                prompt: "Mạng lưới sông ngòi nước ta rất dày đặc! Hãy điều chỉnh máy đo về đúng tổng số lượng con sông có chiều dài trên 10 km ở nước ta (SGK trang 14):",
+                min: 500, max: 3500, step: 10,
+                presets: [839, 1500, 2360, 3260],
+                targetValue: 2360,
+                unit: "con sông",
+                mitigationHint: "Xem mục 3. Sông ngòi (SGK trang 14): Nước ta có khoảng 2.360 con sông có chiều dài trên 10 km!",
+                explanation: "Chính xác! Nước ta có khoảng 2.360 con sông có chiều dài trên 10 km."
+            }
+        ];
+
+        /* */
+        /* ============================================================================
+           4. GAME STATE & MULTI-MECHANIC SESSION GENERATOR
+           ============================================================================ */
+        let studentName = "";
+        let studentClass = "";
+        let sessionMissions = [];
+        let currentMissionIdx = 0;
+        let masteryScore = 0;
+        let floodLevel = 60;      // Starts at 60% flood
+        let windBeaufort = 12;    // Starts at Level 12 Typhoon
+        let usedSystemSupport = false;
+        let totalSupportsUsed = 0;
+        let currentTaskUsedSupport = false;
+        let missionResolved = false;
+        let isGameActive = false;
+
+        let missionTimer = null;
+        let timeLeft = 20;
+        let currentMaxTime = 20;
+
+        // Interactive sub-state for current mission
+        let telegraphSlots = [];
+        let layerSortOrder = [];
+        let pairMatchState = { selectedLeftIdx: null, matchedLeftIndices: [], rightItems: [] };
+        let currentGaugeValue = 0;
+
+        function shuffleList(arr) {
+            const copy = [...arr];
+            for (let i = copy.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [copy[i], copy[j]] = [copy[j], copy[i]];
+            }
+            return copy;
+        }
+
+        // Builds a 10-mission randomized campaign mixing all 5 interactive gameplay mechanics!
+        // Includes 2 Extreme Weather Multi-Task Waves:
+        // - Missions 3 & 4 (indices 2, 3): Wave 1 - "VÒI RỒNG & GIÔNG LỐC XOÁY" (2 consecutive tasks)
+        // - Missions 7, 8 & 9 (indices 6, 7, 8): Wave 2 - "MẮT SIÊU BÃO ĐỔ BỘ" (3 consecutive tasks)
+        function generateStormSessionMissions() {
+            const mapTasks = shuffleList(STORM_MISSION_BANK.filter(m => m.type === "MAP_RADAR")).slice(0, 2);
+            const telTasks = shuffleList(STORM_MISSION_BANK.filter(m => m.type === "TELEGRAPH_FILL")).slice(0, 2);
+            const sortTasks = shuffleList(STORM_MISSION_BANK.filter(m => m.type === "LAYER_SORT")).slice(0, 2);
+            const pairTasks = shuffleList(STORM_MISSION_BANK.filter(m => m.type === "PAIR_MATCH")).slice(0, 2);
+            const dialTasks = shuffleList(STORM_MISSION_BANK.filter(m => m.type === "GAUGE_DIAL")).slice(0, 2);
+
+            // Interleave the 5 mechanics so every single turn feels fresh and different!
+            const interleaved = [
+                mapTasks[0],
+                telTasks[0],
+                sortTasks[0],
+                pairTasks[0],
+                dialTasks[0],
+                mapTasks[1],
+                telTasks[1],
+                sortTasks[1],
+                pairTasks[1],
+                dialTasks[1]
+            ];
+
+            sessionMissions = interleaved.map((item, idx) => {
+                let extremeWave = null;
+                if (idx === 2 || idx === 3) {
+                    extremeWave = {
+                        title: "CẢNH BÁO KHẨN CẤP: GIÔNG LỐC & VÒI RỒNG XOÁY!",
+                        sub: "Vòi rồng xuất hiện! Bạn phải xử lý liên tiếp 2 nhiệm vụ tương tác (3 & 4) mới dập tắt được lốc xoáy!",
+                        step: idx === 2 ? 1 : 2,
+                        totalSteps: 2,
+                        icon: "fa-solid fa-tornado"
+                    };
+                } else if (idx === 6 || idx === 7 || idx === 8) {
+                    extremeWave = {
+                        title: "BÁO ĐỘNG ĐẶC BIỆT: MẮT SIÊU BÃO ĐỔ BỘ!",
+                        sub: "Siêu bão áp sát đất liền! Phải vượt qua liên tiếp 3 nhiệm vụ thực hành (7, 8 & 9) mới phá tan mắt bão!",
+                        step: idx - 5,
+                        totalSteps: 3,
+                        icon: "fa-solid fa-hurricane animate-spin"
+                    };
+                }
+
+                return {
+                    ...JSON.parse(JSON.stringify(item)),
+                    extremeWave
+                };
+            });
+        }
+
+        /* ============================================================================
+           5. MISSION TIMER, WEATHER VISUALS & SUPPORT ESCALATION ENGINE
+           ============================================================================ */
+        function startStormMission() {
+            const nameInput = document.getElementById('studentNameInput').value.trim();
+            const classInput = document.getElementById('studentClassInput').value.trim();
+            const errorMsg = document.getElementById('loginErrorMsg');
+
+            if (!nameInput || !classInput) {
+                errorMsg.classList.remove('hidden');
+                playWeatherSfx('thunder');
+                return;
+            }
+
+            errorMsg.classList.add('hidden');
+            studentName = nameInput;
+            studentClass = classInput;
+
+            document.getElementById('displayStudentName').textContent = studentName;
+            document.getElementById('displayStudentClass').textContent = "Lớp: " + studentClass;
+            document.getElementById('commanderBadge').classList.remove('hidden');
+            document.getElementById('commanderBadge').classList.add('flex');
+
+            generateStormSessionMissions();
+            currentMissionIdx = 0;
+            masteryScore = 0;
+            stormSeverity = 75;
+            floodLevel = 60;
+            windBeaufort = 12;
+            usedSystemSupport = false;
+            totalSupportsUsed = 0;
+            isGameActive = true;
+
+            document.getElementById('startScreen').classList.add('hidden');
+            document.getElementById('bulletinScreen').classList.add('hidden');
+            const gameScreen = document.getElementById('gameScreen');
+            gameScreen.classList.remove('hidden');
+            gameScreen.classList.add('flex');
+
+            startAmbientWindSound();
+            updateWeatherVisualsAndMap();
+            loadMissionCard();
+        }
+
+        function startMissionCountdown() {
+            stopMissionCountdown();
+            updateMissionTimerUI();
+
+            missionTimer = setInterval(() => {
+                if (missionResolved || !isGameActive) return;
+                timeLeft--;
+                updateMissionTimerUI();
+
+                if (timeLeft <= 5 && timeLeft > 0) {
+                    playWeatherSfx('tick');
+                }
+
+                if (timeLeft <= 0) {
+                    stopMissionCountdown();
+                    escalateStormOnError("HẾT THỜI GIAN XỬ LÝ! GIÓ BÃO MẠNH LÊN & HỆ THỐNG ĐÃ BẬT BIỆN PHÁP HỖ TRỢ!");
+                }
+            }, 1000);
+        }
+
+        function stopMissionCountdown() {
+            if (missionTimer) {
+                clearInterval(missionTimer);
+                missionTimer = null;
+            }
+        }
+
+        function updateMissionTimerUI() {
+            const timerText = document.getElementById('timerText');
+            const timerBar = document.getElementById('timerBar');
+            const timerBox = document.getElementById('timerBox');
+            if (!timerText || !timerBar) return;
+
+            const pct = Math.max(0, Math.round((timeLeft / currentMaxTime) * 100));
+            timerText.textContent = `${timeLeft}s`;
+            timerBar.style.width = `${pct}%`;
+
+            if (timeLeft > 10) {
+                timerText.className = "text-xs sm:text-sm font-extrabold text-cyan-300";
+                timerBar.className = "h-full bg-cyan-400 transition-all duration-500";
+                timerBox.className = "flex items-center gap-2 px-3 py-1 rounded-lg bg-slate-900 border border-cyan-500/40 font-mono-tech";
+            } else if (timeLeft > 5) {
+                timerText.className = "text-xs sm:text-sm font-extrabold text-amber-300";
+                timerBar.className = "h-full bg-amber-400 transition-all duration-500";
+                timerBox.className = "flex items-center gap-2 px-3 py-1 rounded-lg bg-slate-900 border border-amber-500/50 font-mono-tech";
+            } else {
+                timerText.className = "text-xs sm:text-sm font-extrabold text-rose-400 animate-pulse";
+                timerBar.className = "h-full bg-rose-500 transition-all duration-500";
+                timerBox.className = "flex items-center gap-2 px-3 py-1 rounded-lg bg-rose-950/90 border border-rose-500 font-mono-tech animate-bounce";
+            }
+        }
+
+        function triggerLightningBolt() {
+            const overlay = document.getElementById('lightningOverlay');
+            if (!overlay) return;
+            overlay.classList.remove('lightning-instant');
+            void overlay.offsetWidth;
+            overlay.classList.add('lightning-instant');
+        }
+
+        function triggerStormSupport(isManualClick = false) {
+            if (missionResolved) return;
+            const mission = sessionMissions[currentMissionIdx];
+
+            if (!currentTaskUsedSupport) {
+                currentTaskUsedSupport = true;
+                usedSystemSupport = true;
+                totalSupportsUsed++;
+            }
+
+            if (isManualClick) {
+                playWeatherSfx('siren');
+            }
+
+            updateWeatherVisualsAndMap();
+            document.getElementById('manualSupportBtn').classList.add('hidden');
+
+            const drawer = document.getElementById('stormFeedbackDrawer');
+            const iconBox = document.getElementById('feedbackIconBox');
+            const title = document.getElementById('feedbackTitle');
+            const tag = document.getElementById('feedbackTag');
+            const bodyText = document.getElementById('feedbackBodyText');
+            const nextBtnWrap = document.getElementById('nextMissionBtnWrapper');
+
+            drawer.className = "mt-3.5 rounded-xl p-3.5 border bg-amber-950/60 border-amber-400/60 transition-all";
+            iconBox.className = "w-8 h-8 rounded-lg bg-amber-500/20 border border-amber-400/50 text-amber-300 flex items-center justify-center shrink-0 mt-0.5 text-base";
+            iconBox.innerHTML = '<i class="fa-solid fa-life-ring"></i>';
+
+            title.textContent = "BIỆN PHÁP CHỐNG BÃO - NGĂN NGẬP (GỢI Ý HỆ THỐNG)";
+            title.className = "font-extrabold text-xs sm:text-sm uppercase tracking-wide text-amber-300";
+
+            tag.textContent = "MỨC THƯỞNG: +0.25 ĐIỂM";
+            tag.className = "text-[10px] font-mono-tech px-2 py-0.5 rounded bg-amber-500/25 text-amber-200 border border-amber-400/40";
+
+            bodyText.innerHTML = `<b class="text-amber-200">Hướng dẫn chống bão (SGK):</b> ${mission.mitigationHint}`;
+            nextBtnWrap.classList.add('hidden');
+            drawer.classList.remove('hidden');
+        }
+
+        function escalateStormOnError(customErrorHeader) {
+            if (missionResolved) return;
+
+            // Storm intensifies up to Super Typhoon (Level 16, Severity 100%, Flood 95%)
+            stormSeverity = Math.min(100, stormSeverity + 12);
+            floodLevel = Math.min(95, floodLevel + 10);
+            windBeaufort = Math.min(16, windBeaufort + 2);
+
+            playWeatherSfx('thunder');
+            triggerLightningBolt();
+
+            // Shake console
+            const consoleBox = document.getElementById('missionConsoleBox');
+            if (consoleBox) {
+                consoleBox.classList.remove('shake-storm');
+                void consoleBox.offsetWidth;
+                consoleBox.classList.add('shake-storm');
+            }
+
+            // Activate support hint & reset timer to 15s so student can apply the hint
+            triggerStormSupport(false);
+            timeLeft = Math.max(timeLeft, 15);
+            updateMissionTimerUI();
+
+            const title = document.getElementById('feedbackTitle');
+            const tag = document.getElementById('feedbackTag');
+            if (title && customErrorHeader) {
+                title.textContent = customErrorHeader;
+                title.className = "font-extrabold text-xs sm:text-sm uppercase tracking-wide text-rose-300";
+            }
+            if (tag) {
+                tag.textContent = windBeaufort >= 15 ? "CẢNH BÁO SIÊU BÃO CẤP " + windBeaufort : "BÃO MẠNH LÊN CẤP " + windBeaufort;
+                tag.className = "text-[10px] font-mono-tech px-2 py-0.5 rounded bg-rose-500/30 text-rose-200 border border-rose-400/50";
+            }
+        }
+
+        function updateWeatherVisualsAndMap() {
+            const total = sessionMissions.length || 10;
+            const currentNum = Math.min(total, currentMissionIdx + 1);
+            const progressPct = Math.round((currentNum / total) * 100);
+
+            document.getElementById('progressText').textContent = `${currentNum}/${total}`;
+            document.getElementById('progressBar').style.width = `${progressPct}%`;
+            document.getElementById('masteryScoreText').textContent = `${masteryScore} điểm`;
+
+            // Wind UI
+            const windText = document.getElementById('windLevelText');
+            const windBar = document.getElementById('windBar');
+            windText.textContent = windBeaufort >= 15 ? `Cấp ${windBeaufort} (SIÊU BÃO)` : (windBeaufort <= 3 ? `Cấp ${windBeaufort} (Gió nhẹ)` : `Cấp ${windBeaufort}`);
+            windBar.style.width = `${Math.min(100, Math.round((windBeaufort / 16) * 100))}%`;
+
+            // Flood UI & Bottom Rising Water Bar
+            document.getElementById('floodLevelText').textContent = `${floodLevel}%`;
+            document.getElementById('floodBar').style.width = `${floodLevel}%`;
+            const floodContainer = document.getElementById('floodWaterContainer');
+            const floodWatermark = document.getElementById('floodWatermarkText');
+            const vhHeight = Math.round((floodLevel / 100) * 32);
+            floodContainer.style.height = `${vhHeight}vh`;
+
+            // Bonus Track UI
+            const bonusText = document.getElementById('bonusTrackText');
+            const bonusIcon = document.getElementById('bonusBadgeIcon');
+            if (!usedSystemSupport) {
+                bonusText.textContent = "+0.5đ (Tự lực 100%)";
+                bonusText.className = "text-xs font-extrabold text-emerald-300 truncate";
+                bonusIcon.className = "w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-300 shrink-0 text-sm";
+            } else {
+                bonusText.textContent = `+0.25đ (Hỗ trợ: ${totalSupportsUsed} lần)`;
+                bonusText.className = "text-xs font-extrabold text-amber-300 truncate";
+                bonusIcon.className = "w-8 h-8 rounded-lg bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-300 shrink-0 text-sm";
+            }
+
+            // Modulate WebAudio wind howling
+            modulateWindAudioBySeverity(stormSeverity);
+
+            // Dynamic Weather Map Alert Level (Red -> Orange -> Yellow -> Green)
+            const body = document.getElementById('mainBody');
+            const vnMainland = document.getElementById('vnMainlandPath');
+            const headerBadge = document.getElementById('headerAlertBadge');
+            const mapAlertPill = document.getElementById('mapAlertPill');
+            const cloudsGroup = document.getElementById('mapStormCloudsGroup');
+            const cycloneGroup = document.getElementById('mapCycloneGroup');
+            const clearSunGroup = document.getElementById('mapClearSunGroup');
+            const clearSkyOverlay = document.getElementById('clearSkyOverlay');
+            const lightningOverlay = document.getElementById('lightningOverlay');
+            const narrativeText = document.getElementById('weatherNarrativeText');
+
+            // Reset legend rings
+            const sRed = document.getElementById('scaleStepRed');
+            const sOrange = document.getElementById('scaleStepOrange');
+            const sYellow = document.getElementById('scaleStepYellow');
+            const sGreen = document.getElementById('scaleStepGreen');
+            sRed.className = "px-2 py-0.5 rounded bg-rose-500/25 text-rose-300";
+            sOrange.className = "px-2 py-0.5 rounded bg-orange-500/25 text-orange-300";
+            sYellow.className = "px-2 py-0.5 rounded bg-amber-400/25 text-amber-200";
+            sGreen.className = "px-2 py-0.5 rounded bg-emerald-500/25 text-emerald-300";
+
+            cloudsGroup.style.opacity = (stormSeverity / 100).toFixed(2);
+
+            if (stormSeverity >= 65) {
+                // RED ALERT / SUPER TYPHOON
+                body.className = stormSeverity >= 85
+                    ? "sky-super-typhoon transition-colors duration-1000 flex flex-col justify-between min-h-screen"
+                    : "sky-red-alert transition-colors duration-1000 flex flex-col justify-between min-h-screen";
+                vnMainland.setAttribute("fill", "#ef4444");
+                vnMainland.setAttribute("stroke", "#fda4af");
+                const alertTitle = stormSeverity >= 85 ? "SIÊU BÃO ĐỎ CẤP " + windBeaufort : "BÁO ĐỘNG ĐỎ";
+                headerBadge.textContent = alertTitle;
+                headerBadge.className = "text-[10px] sm:text-xs font-mono-tech uppercase tracking-wider px-2 py-0.5 rounded bg-rose-500/30 text-rose-200 border border-rose-400 font-bold animate-pulse";
+                mapAlertPill.textContent = alertTitle;
+                mapAlertPill.className = "text-[11px] font-mono-tech font-extrabold px-2.5 py-0.5 rounded-full bg-rose-500/30 text-rose-200 border border-rose-400";
+                sRed.className = "px-2 py-0.5 rounded bg-rose-600 text-white font-bold ring-2 ring-white";
+                cycloneGroup.classList.remove('hidden');
+                cycloneGroup.setAttribute("transform", "translate(255, 250) scale(1.1)");
+                clearSunGroup.classList.add('hidden');
+                clearSkyOverlay.style.opacity = "0";
+                lightningOverlay.classList.add('lightning-active');
+                floodWatermark.textContent = `Mực nước ngập: ${floodLevel}% (${alertTitle})`;
+                narrativeText.textContent = "Mây bão dày đặc, gió giật dữ dội và ngập sâu diện rộng. Hãy giải quyết đúng nhiệm vụ để đẩy lùi bão!";
+            } else if (stormSeverity >= 38) {
+                // ORANGE ALERT
+                body.className = "sky-orange-alert transition-colors duration-1000 flex flex-col justify-between min-h-screen";
+                vnMainland.setAttribute("fill", "#f97316");
+                vnMainland.setAttribute("stroke", "#fdba74");
+                headerBadge.textContent = "BÁO ĐỘNG CAM";
+                headerBadge.className = "text-[10px] sm:text-xs font-mono-tech uppercase tracking-wider px-2 py-0.5 rounded bg-orange-500/30 text-orange-200 border border-orange-400 font-bold";
+                mapAlertPill.textContent = "BÁO ĐỘNG CAM";
+                mapAlertPill.className = "text-[11px] font-mono-tech font-extrabold px-2.5 py-0.5 rounded-full bg-orange-500/30 text-orange-200 border border-orange-400";
+                sOrange.className = "px-2 py-0.5 rounded bg-orange-500 text-slate-950 font-bold ring-2 ring-white";
+                cycloneGroup.classList.remove('hidden');
+                cycloneGroup.setAttribute("transform", "translate(275, 255) scale(0.82)");
+                clearSunGroup.classList.add('hidden');
+                clearSkyOverlay.style.opacity = "0";
+                lightningOverlay.classList.remove('lightning-active');
+                floodWatermark.textContent = `Mực nước ngập: ${floodLevel}% (Báo động Cam)`;
+                narrativeText.textContent = "Sức gió đang giảm dần, bản đồ đã hạ xuống Báo động Cam. Tiếp tục phát huy để nước lũ rút nhanh hơn!";
+            } else if (stormSeverity > 5) {
+                // YELLOW ALERT
+                body.className = "sky-yellow-alert transition-colors duration-1000 flex flex-col justify-between min-h-screen";
+                vnMainland.setAttribute("fill", "#eab308");
+                vnMainland.setAttribute("stroke", "#fde047");
+                headerBadge.textContent = "BÁO ĐỘNG VÀNG";
+                headerBadge.className = "text-[10px] sm:text-xs font-mono-tech uppercase tracking-wider px-2 py-0.5 rounded bg-amber-500/30 text-amber-200 border border-amber-400 font-bold";
+                mapAlertPill.textContent = "BÁO ĐỘNG VÀNG";
+                mapAlertPill.className = "text-[11px] font-mono-tech font-extrabold px-2.5 py-0.5 rounded-full bg-amber-500/30 text-amber-200 border border-amber-400";
+                sYellow.className = "px-2 py-0.5 rounded bg-amber-400 text-slate-950 font-bold ring-2 ring-white";
+                cycloneGroup.classList.remove('hidden');
+                cycloneGroup.setAttribute("transform", "translate(310, 260) scale(0.5)");
+                clearSunGroup.classList.add('hidden');
+                clearSkyOverlay.style.opacity = "0.25";
+                lightningOverlay.classList.remove('lightning-active');
+                floodWatermark.textContent = `Mực nước ngập: ${floodLevel}% (Báo động Vàng - Nước đang rút)`;
+                narrativeText.textContent = "Áp thấp suy yếu nhanh, mây đen tan dần và nước lũ đang rút mạnh! Chỉ còn vài nhiệm vụ nữa để trời quang mây tạnh!";
+            } else {
+                // GREEN CLEAR SKY
+                body.className = "sky-green-clear transition-colors duration-1000 flex flex-col justify-between min-h-screen";
+                vnMainland.setAttribute("fill", "#10b981");
+                vnMainland.setAttribute("stroke", "#6ee7b7");
+                headerBadge.textContent = "BÌNH YÊN (XANH)";
+                headerBadge.className = "text-[10px] sm:text-xs font-mono-tech uppercase tracking-wider px-2 py-0.5 rounded bg-emerald-500/30 text-emerald-200 border border-emerald-400 font-bold";
+                mapAlertPill.textContent = "TRỜI QUANG MÂY TẠNH";
+                mapAlertPill.className = "text-[11px] font-mono-tech font-extrabold px-2.5 py-0.5 rounded-full bg-emerald-500/30 text-emerald-200 border border-emerald-400";
+                sGreen.className = "px-2 py-0.5 rounded bg-emerald-500 text-slate-950 font-bold ring-2 ring-white";
+                cycloneGroup.classList.add('hidden');
+                clearSunGroup.classList.remove('hidden');
+                clearSkyOverlay.style.opacity = "1";
+                lightningOverlay.classList.remove('lightning-active');
+                floodWatermark.textContent = "Mực nước ngập: 0% (Bình yên)";
+                narrativeText.textContent = "Cơn bão đã bị đánh tan hoàn toàn! Bầu trời Việt Nam trong xanh, nắng ấm và nước lũ đã rút sạch.";
+            }
+        }
+
+        function loadMissionCard() {
+            missionResolved = false;
+            currentTaskUsedSupport = false;
+
+            const mission = sessionMissions[currentMissionIdx];
+            currentMaxTime = mission.timeLimit;
+            timeLeft = currentMaxTime;
+
+            // Update topic, mechanic & difficulty badges
+            document.getElementById('missionTopicBadge').textContent = mission.topic;
+            document.getElementById('missionDiffBadge').textContent = mission.diffLabel;
+            document.getElementById('missionMechanicBadge').innerHTML = `<i class="fa-solid fa-Compass-drafting mr-1"></i>${mission.mechanicName}`;
+            document.getElementById('questionPromptText').textContent = mission.prompt;
+            document.getElementById('manualSupportBtn').classList.remove('hidden');
+            document.getElementById('stormFeedbackDrawer').classList.add('hidden');
+            document.getElementById('nextMissionBtnWrapper').classList.add('hidden');
+
+            // Hide map interactive pins unless current mission is MAP_RADAR
+            const pinsLayer = document.getElementById('mapInteractivePinsLayer');
+            pinsLayer.innerHTML = '';
+            pinsLayer.classList.add('hidden');
+
+            // Check if this mission is part of an Extreme Weather Multi-Task Wave
+            const extremeBanner = document.getElementById('extremeEventBanner');
+            const mapTornadoIcon = document.getElementById('mapTornadoIcon');
+            const consoleBox = document.getElementById('missionConsoleBox');
+
+            if (mission.extremeWave) {
+                extremeBanner.classList.remove('hidden');
+                mapTornadoIcon.classList.remove('hidden');
+                document.getElementById('extremeEventIcon').className = mission.extremeWave.icon;
+                document.getElementById('extremeEventTitle').textContent = mission.extremeWave.title;
+                document.getElementById('extremeEventSub').textContent = mission.extremeWave.sub;
+                document.getElementById('extremeChainDots').textContent = `Nhiệm vụ liên tiếp: ${mission.extremeWave.step}/${mission.extremeWave.totalSteps}`;
+                consoleBox.className = "lg:col-span-7 storm-panel rounded-2xl p-4 sm:p-5 flex flex-col justify-between relative overflow-hidden border-2 border-rose-500/80 shadow-xl shadow-rose-950/50";
+                playWeatherSfx('siren');
+            } else {
+                extremeBanner.classList.add('hidden');
+                mapTornadoIcon.classList.add('hidden');
+                consoleBox.className = "lg:col-span-7 storm-panel rounded-2xl p-4 sm:p-5 flex flex-col justify-between relative overflow-hidden border-2 border-cyan-500/35";
+            }
+
+            // Render custom interactive UI based on mission.type
+            const container = document.getElementById('interactiveTaskContainer');
+            container.innerHTML = '';
+
+            if (mission.type === "MAP_RADAR") {
+                renderMapRadarMission(mission, container);
+            } else if (mission.type === "TELEGRAPH_FILL") {
+                renderTelegraphFillMission(mission, container);
+            } else if (mission.type === "LAYER_SORT") {
+                renderLayerSortMission(mission, container);
+            } else if (mission.type === "PAIR_MATCH") {
+                renderPairMatchMission(mission, container);
+            } else if (mission.type === "GAUGE_DIAL") {
+                renderGaugeDialMission(mission, container);
+            }
+
+            startMissionCountdown();
+        }
+
+        /* ----------------------------------------------------------------------------
+           MODE 1 RENDERER: ĐỊNH VỊ RADAR TRỰC TIẾP TRÊN LƯỢC ĐỒ VIỆT NAM (MAP_RADAR)
+           ---------------------------------------------------------------------------- */
+        function renderMapRadarMission(mission, container) {
+            const pinsLayer = document.getElementById('mapInteractivePinsLayer');
+            pinsLayer.classList.remove('hidden');
+
+            // Render glowing interactive target pins directly on the SVG Vietnam Map
+            mission.pins.forEach((pin, idx) => {
+                const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+                g.setAttribute("transform", `translate(${pin.x}, ${pin.y})`);
+                g.setAttribute("class", "cursor-pointer");
+                g.onclick = () => handleMapPinSelection(idx);
+
+                g.innerHTML = `
+                    <circle cx="0" cy="0" r="19" fill="rgba(6, 182, 212, 0.28)" stroke="#22d3ee" stroke-width="1.8" class="animate-ping" style="animation-duration: 1.8s;"/>
+                    <circle cx="0" cy="0" r="13" fill="#0f172a" stroke="#38bdf8" stroke-width="2.2"/>
+                    <text x="0" y="4" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="800" font-family="monospace">${pin.label.replace('Trạm ', '')}</text>
+                `;
+                pinsLayer.appendChild(g);
+            });
+
+            // Also render synchronized Radar Control Pad in the right console for convenience on small screens
+            const infoBox = document.createElement('div');
+            infoBox.className = "space-y-2.5";
+            infoBox.innerHTML = `
+                <div class="rounded-xl bg-cyan-950/40 border border-cyan-400/40 p-3 text-xs text-cyan-200 flex items-center gap-2.5">
+                    <i class="fa-solid fa-location-crosshairs text-cyan-400 text-lg animate-spin"></i>
+                    <span><b>Cách thực hiện:</b> Nhấn trực tiếp vào <b>Trạm Radar A, B, C, D</b> đang phát sáng trên <b>Lược đồ Việt Nam (bên trái)</b> hoặc kích hoạt nhanh qua bảng tọa độ dưới đây:</span>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2" id="mapQuickPad"></div>
+            `;
+            container.appendChild(infoBox);
+
+            const quickPad = infoBox.querySelector('#mapQuickPad');
+            mission.pins.forEach((pin, idx) => {
+                const btn = document.createElement('button');
+                btn.id = `mapPadBtn-${idx}`;
+                btn.className = "p-2.5 rounded-xl bg-slate-900/90 hover:bg-cyan-950/80 border border-cyan-500/40 text-center transition flex flex-col items-center gap-1 cursor-pointer";
+                btn.onclick = () => handleMapPinSelection(idx);
+                btn.innerHTML = `
+                    <span class="w-7 h-7 rounded-full bg-cyan-500/20 border border-cyan-400 text-cyan-300 font-mono-tech font-extrabold text-xs flex items-center justify-center">
+                        ${pin.label.replace('Trạm ', '')}
+                    </span>
+                    <span class="text-xs font-bold text-white">${pin.label}</span>
+                    <span class="text-[10px] text-slate-400">Kích hoạt tọa độ</span>
+                `;
+                quickPad.appendChild(btn);
+            });
+        }
+
+        function handleMapPinSelection(pinIdx) {
+            if (missionResolved) return;
+            const mission = sessionMissions[currentMissionIdx];
+            const pin = mission.pins[pinIdx];
+            const padBtn = document.getElementById(`mapPadBtn-${pinIdx}`);
+
+            if (pin.isCorrect) {
+                if (padBtn) {
+                    padBtn.className = "p-2.5 rounded-xl bg-emerald-600/40 border-2 border-emerald-400 text-center flex flex-col items-center gap-1";
+                }
+                completeMissionSuccess();
+            } else {
+                if (padBtn) {
+                    padBtn.className = "p-2.5 rounded-xl bg-rose-950/80 border border-rose-500/70 opacity-60 pointer-events-none text-center flex flex-col items-center gap-1";
+                    padBtn.innerHTML += `<span class="text-[10px] text-rose-300 font-semibold">${pin.placeName}</span>`;
+                }
+                escalateStormOnError(`ĐỊNH VỊ NHẦM TỌA ĐỘ (${pin.placeName})! BÃO MẠNH LÊN & BẬT GỢI Ý`);
+            }
+        }
+
+        /* ----------------------------------------------------------------------------
+           MODE 2 RENDERER: GIẢI MÃ CÔNG ĐIỆN KHÍ TƯỢNG (TELEGRAPH_FILL)
+           ---------------------------------------------------------------------------- */
+        function renderTelegraphFillMission(mission, container) {
+            telegraphSlots = [null, null];
+            const shuffledBank = shuffleList(mission.wordBank);
+
+            const wrap = document.createElement('div');
+            wrap.className = "space-y-3";
+
+            wrap.innerHTML = `
+                <div class="rounded-xl bg-slate-900/95 border border-cyan-500/35 p-3.5 text-xs sm:text-sm text-slate-200 leading-relaxed font-medium" id="telegraphTextBox"></div>
+                <div class="text-[11px] font-mono-tech text-cyan-300 uppercase flex items-center justify-between">
+                    <span><i class="fa-solid fa-microchip mr-1"></i>KHO DỮ LIỆU KHÍ TƯỢNG (CHẠM ĐỂ LẮP VÀO Ô TRỐNG):</span>
+                    <button onclick="clearTelegraphSlots()" class="text-slate-400 hover:text-white underline cursor-pointer">Đặt lại ô trống</button>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2" id="telegraphWordBank"></div>
+            `;
+            container.appendChild(wrap);
+
+            updateTelegraphDisplay(mission, shuffledBank);
+        }
+
+        function updateTelegraphDisplay(mission, shuffledBank) {
+            const textBox = document.getElementById('telegraphTextBox');
+            const bankBox = document.getElementById('telegraphWordBank');
+            if (!textBox || !bankBox) return;
+
+            const slot0Html = telegraphSlots[0]
+                ? `<button onclick="removeTelegraphSlot(0)" class="inline-flex items-center gap-1 mx-1 px-2.5 py-0.5 rounded-md bg-cyan-500 text-slate-950 font-extrabold text-xs sm:text-sm shadow cursor-pointer">${telegraphSlots[0]} <i class="fa-solid fa-xmark text-[10px]"></i></button>`
+                : `<span class="inline-block mx-1 px-3 py-0.5 rounded-md bg-slate-950 border border-dashed border-cyan-400 text-cyan-300 font-mono-tech text-xs">[ Ô TRỐNG 1 ]</span>`;
+
+            const slot1Html = telegraphSlots[1]
+                ? `<button onclick="removeTelegraphSlot(1)" class="inline-flex items-center gap-1 mx-1 px-2.5 py-0.5 rounded-md bg-cyan-500 text-slate-950 font-extrabold text-xs sm:text-sm shadow cursor-pointer">${telegraphSlots[1]} <i class="fa-solid fa-xmark text-[10px]"></i></button>`
+                : `<span class="inline-block mx-1 px-3 py-0.5 rounded-md bg-slate-950 border border-dashed border-amber-400 text-amber-300 font-mono-tech text-xs">[ Ô TRỐNG 2 ]</span>`;
+
+            textBox.innerHTML = `
+                <i class="fa-solid fa-tower-broadcast text-cyan-400 mr-1.5"></i>
+                ${mission.templateParts[0]} ${slot0Html} ${mission.templateParts[1]} ${slot1Html} ${mission.templateParts[2]}
+            `;
+
+            bankBox.innerHTML = '';
+            shuffledBank.forEach((word) => {
+                const isUsed = telegraphSlots.includes(word);
+                const btn = document.createElement('button');
+                btn.className = isUsed
+                    ? "p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-600 text-xs sm:text-sm font-semibold text-left opacity-40 pointer-events-none"
+                    : "p-2.5 rounded-xl bg-slate-900 hover:bg-cyan-950/70 border border-cyan-500/40 text-cyan-100 text-xs sm:text-sm font-semibold text-left transition flex items-center justify-between cursor-pointer";
+                btn.innerHTML = `<span>${word}</span> <i class="fa-solid fa-plus-circle text-cyan-400"></i>`;
+                btn.onclick = () => selectWordForTelegraph(word, mission, shuffledBank);
+                bankBox.appendChild(btn);
+            });
+        }
+
+        function selectWordForTelegraph(word, mission, shuffledBank) {
+            if (missionResolved) return;
+            if (telegraphSlots[0] === null) {
+                telegraphSlots[0] = word;
+            } else if (telegraphSlots[1] === null) {
+                telegraphSlots[1] = word;
+            }
+            updateTelegraphDisplay(mission, shuffledBank);
+
+            // Auto-verify once both slots are filled
+            if (telegraphSlots[0] !== null && telegraphSlots[1] !== null) {
+                if (telegraphSlots[0] === mission.correctWords[0] && telegraphSlots[1] === mission.correctWords[1]) {
+                    completeMissionSuccess();
+                } else {
+                    setTimeout(() => {
+                        if (missionResolved) return;
+                        telegraphSlots = [null, null];
+                        updateTelegraphDisplay(mission, shuffledBank);
+                        escalateStormOnError("GHÉP SAI DỮ LIỆU CÔNG ĐIỆN! HÃY ĐỌC GỢI Ý & LẮP LẠI");
+                    }, 350);
+                }
+            }
+        }
+
+        function removeTelegraphSlot(slotIdx) {
+            if (missionResolved) return;
+            const mission = sessionMissions[currentMissionIdx];
+            telegraphSlots[slotIdx] = null;
+            updateTelegraphDisplay(mission, mission.wordBank);
+        }
+
+        function clearTelegraphSlots() {
+            if (missionResolved) return;
+            const mission = sessionMissions[currentMissionIdx];
+            telegraphSlots = [null, null];
+            updateTelegraphDisplay(mission, mission.wordBank);
+        }
+
+        /* ----------------------------------------------------------------------------
+           MODE 3 RENDERER: SẮP XẾP PHÂN TẦNG ĐỊA LÍ (LAYER_SORT)
+           ---------------------------------------------------------------------------- */
+        function renderLayerSortMission(mission, container) {
+            layerSortOrder = [];
+            const shuffledItems = shuffleList(mission.items);
+            mission._shuffledItems = shuffledItems;
+
+            const wrap = document.createElement('div');
+            wrap.className = "space-y-2.5";
+            wrap.innerHTML = `
+                <div class="rounded-xl bg-slate-900/95 border border-emerald-500/35 p-3">
+                    <div class="flex items-center justify-between text-[11px] font-mono-tech text-emerald-300 mb-2">
+                        <span><i class="fa-solid fa-layer-group mr-1"></i>TRÌNH TỰ BẠN ĐÃ XẾP:</span>
+                        <button onclick="resetLayerSort()" class="text-amber-300 hover:underline cursor-pointer"><i class="fa-solid fa-rotate-left mr-1"></i>Xếp lại từ đầu</button>
+                    </div>
+                    <div id="sortedSlotsBox" class="space-y-1.5 min-h-[44px]"></div>
+                </div>
+                <div class="text-[11px] font-mono-tech text-slate-400">CHẠM LẦN LƯỢT VÀO CÁC THẺ DƯỚI ĐÂY ĐỂ ĐƯA VÀO TRÌNH TỰ:</div>
+                <div id="unsortedPoolBox" class="grid grid-cols-1 gap-2"></div>
+            `;
+            container.appendChild(wrap);
+            updateLayerSortUI(mission);
+        }
+
+        function updateLayerSortUI(mission) {
+            const sortedBox = document.getElementById('sortedSlotsBox');
+            const poolBox = document.getElementById('unsortedPoolBox');
+            if (!sortedBox || !poolBox) return;
+
+            if (layerSortOrder.length === 0) {
+                sortedBox.innerHTML = `<div class="text-xs text-slate-500 italic py-2 text-center">Chưa có thẻ nào được chọn. Hãy chạm vào thẻ đầu tiên bên dưới!</div>`;
+            } else {
+                sortedBox.innerHTML = layerSortOrder.map((itemText, idx) => `
+                    <div class="px-3 py-2 rounded-lg bg-emerald-950/60 border border-emerald-400/50 text-xs sm:text-sm text-emerald-100 font-semibold flex items-center gap-2.5">
+                        <span class="w-5 h-5 rounded-full bg-emerald-400 text-slate-950 font-mono-tech font-extrabold text-xs flex items-center justify-center shrink-0">${idx + 1}</span>
+                        <span>${itemText}</span>
+                    </div>
+                `).join('');
+            }
+
+            poolBox.innerHTML = '';
+            mission._shuffledItems.forEach((itemText) => {
+                if (layerSortOrder.includes(itemText)) return;
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left px-3.5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-cyan-500/35 text-xs sm:text-sm text-slate-100 font-medium transition flex items-center justify-between cursor-pointer";
+                btn.innerHTML = `<span>${itemText}</span> <i class="fa-solid fa-arrow-up-from-bracket text-cyan-400"></i>`;
+                btn.onclick = () => pickLayerSortItem(itemText, mission);
+                poolBox.appendChild(btn);
+            });
+        }
+
+        function pickLayerSortItem(itemText, mission) {
+            if (missionResolved) return;
+            const nextExpectedIdx = layerSortOrder.length;
+
+            // Validate immediately step-by-step so student learns the exact sequence!
+            if (itemText === mission.items[nextExpectedIdx]) {
+                playWeatherSfx('tick');
+                layerSortOrder.push(itemText);
+                updateLayerSortUI(mission);
+
+                if (layerSortOrder.length === mission.items.length) {
+                    completeMissionSuccess();
+                }
+            } else {
+                escalateStormOnError(`THỨ TỰ BƯỚC #${nextExpectedIdx + 1} CHƯA ĐÚNG! HÃY XEM GỢI Ý TRÌNH TỰ`);
+            }
+        }
+
+        function resetLayerSort() {
+            if (missionResolved) return;
+            const mission = sessionMissions[currentMissionIdx];
+            layerSortOrder = [];
+            updateLayerSortUI(mission);
+        }
+
+        /* ----------------------------------------------------------------------------
+           MODE 4 RENDERER: GHÉP NỐI TRẠM DỮ LIỆU ĐỊA LÍ (PAIR_MATCH)
+           ---------------------------------------------------------------------------- */
+        function renderPairMatchMission(mission, container) {
+            const rightShuffled = shuffleList(mission.pairs.map((p, idx) => ({ text: p.right, pairIdx: idx })));
+            pairMatchState = {
+                selectedLeftIdx: 0,
+                matchedLeftIndices: [],
+                rightItems: rightShuffled
+            };
+
+            const wrap = document.createElement('div');
+            wrap.className = "space-y-2.5";
+            wrap.innerHTML = `
+                <div class="text-[11px] font-mono-tech text-cyan-300">
+                    <i class="fa-solid fa-link mr-1"></i>CHỌN 1 MỤC Ở CỘT TRÁI RỒI CHẠM VÀO ĐẶC ĐIỂM TƯƠNG ỨNG Ở CỘT PHẢI:
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-12 gap-2.5 items-start">
+                    <div id="pairLeftCol" class="sm:col-span-5 space-y-2"></div>
+                    <div id="pairRightCol" class="sm:col-span-7 space-y-2"></div>
+                </div>
+            `;
+            container.appendChild(wrap);
+            updatePairMatchUI(mission);
+        }
+
+        function updatePairMatchUI(mission) {
+            const leftCol = document.getElementById('pairLeftCol');
+            const rightCol = document.getElementById('pairRightCol');
+            if (!leftCol || !rightCol) return;
+
+            leftCol.innerHTML = '';
+            mission.pairs.forEach((p, idx) => {
+                const isMatched = pairMatchState.matchedLeftIndices.includes(idx);
+                const isSelected = pairMatchState.selectedLeftIdx === idx;
+                const btn = document.createElement('button');
+
+                if (isMatched) {
+                    btn.className = "w-full text-left p-3 rounded-xl bg-emerald-950/70 border border-emerald-400/60 text-emerald-200 text-xs sm:text-sm font-bold flex items-center justify-between pointer-events-none";
+                    btn.innerHTML = `<span>${p.left}</span> <i class="fa-solid fa-check-circle text-emerald-400"></i>`;
+                } else if (isSelected) {
+                    btn.className = "w-full text-left p-3 rounded-xl bg-cyan-500/25 border-2 border-cyan-300 text-white text-xs sm:text-sm font-extrabold flex items-center justify-between shadow-lg cursor-pointer";
+                    btn.innerHTML = `<span>${p.left}</span> <i class="fa-solid fa-arrow-right text-cyan-300 animate-pulse"></i>`;
+                } else {
+                    btn.className = "w-full text-left p-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 text-xs sm:text-sm font-semibold flex items-center justify-between cursor-pointer";
+                    btn.innerHTML = `<span>${p.left}</span> <i class="fa-regular fa-circle text-slate-500"></i>`;
+                }
+
+                btn.onclick = () => {
+                    if (missionResolved || isMatched) return;
+                    pairMatchState.selectedLeftIdx = idx;
+                    updatePairMatchUI(mission);
+                };
+                leftCol.appendChild(btn);
+            });
+
+            rightCol.innerHTML = '';
+            pairMatchState.rightItems.forEach((rItem) => {
+                const isMatched = pairMatchState.matchedLeftIndices.includes(rItem.pairIdx);
+                const btn = document.createElement('button');
+
+                if (isMatched) {
+                    btn.className = "w-full text-left p-3 rounded-xl bg-emerald-950/70 border border-emerald-400/60 text-emerald-200 text-xs leading-snug font-semibold flex items-center justify-between pointer-events-none";
+                    btn.innerHTML = `<span>${rItem.text}</span> <i class="fa-solid fa-link text-emerald-400 ml-2 shrink-0"></i>`;
+                } else {
+                    btn.className = "w-full text-left p-3 rounded-xl bg-slate-900 hover:bg-cyan-950/60 border border-cyan-500/35 text-slate-100 text-xs leading-snug font-medium transition flex items-center justify-between cursor-pointer";
+                    btn.innerHTML = `<span>${rItem.text}</span> <i class="fa-solid fa-plug text-cyan-400 ml-2 shrink-0"></i>`;
+                }
+
+                btn.onclick = () => handlePairRightClick(rItem.pairIdx, mission);
+                rightCol.appendChild(btn);
+            });
+        }
+
+        function handlePairRightClick(targetPairIdx, mission) {
+            if (missionResolved || pairMatchState.selectedLeftIdx === null) return;
+
+            if (pairMatchState.selectedLeftIdx === targetPairIdx) {
+                playWeatherSfx('tick');
+                pairMatchState.matchedLeftIndices.push(targetPairIdx);
+
+                // Automatically highlight the next unmatched left item
+                const nextUnmatched = mission.pairs.findIndex((_, i) => !pairMatchState.matchedLeftIndices.includes(i));
+                pairMatchState.selectedLeftIdx = nextUnmatched !== -1 ? nextUnmatched : null;
+                updatePairMatchUI(mission);
+
+                if (pairMatchState.matchedLeftIndices.length === mission.pairs.length) {
+                    completeMissionSuccess();
+                }
+            } else {
+                escalateStormOnError("GHÉP NỐI CHƯA KHỚP DỮ LIỆU! HÃY ĐỌC GỢI Ý ĐỐI CHIẾU SGK");
+            }
+        }
+
+        /* ----------------------------------------------------------------------------
+           MODE 5 RENDERER: ĐIỀU CHỈNH MÁY ĐO KHÍ TƯỢNG – THỦY VĂN (GAUGE_DIAL)
+           ---------------------------------------------------------------------------- */
+        function renderGaugeDialMission(mission, container) {
+            currentGaugeValue = mission.min;
+
+            const wrap = document.createElement('div');
+            wrap.className = "rounded-xl bg-slate-900/95 border border-cyan-500/40 p-4 space-y-3.5";
+            wrap.innerHTML = `
+                <div class="flex items-center justify-between flex-wrap gap-2">
+                    <span class="text-xs font-mono-tech text-slate-400 uppercase"><i class="fa-solid fa-gauge-high text-cyan-400 mr-1"></i>ĐỒNG HỒ ĐO SỐ LIỆU ĐỊA LÍ:</span>
+                    <div class="px-3.5 py-1 rounded-lg bg-slate-950 border border-cyan-400 text-cyan-300 font-mono-tech text-lg sm:text-xl font-extrabold" id="gaugeValueReadout">
+                        ${currentGaugeValue} ${mission.unit}
+                    </div>
+                </div>
+
+                <input type="range" id="gaugeSliderInput" min="${mission.min}" max="${mission.max}" step="${mission.step}" value="${currentGaugeValue}"
+                    class="w-full accent-cyan-400 h-2.5 bg-slate-800 rounded-lg cursor-pointer"
+                    oninput="updateGaugeDialValue(this.value)">
+
+                <div class="space-y-1.5">
+                    <div class="text-[11px] font-mono-tech text-slate-400">HOẶC CHẠM NHANH VÀO CÁC MỐC THÔNG SỐ TRÊN MÁY ĐO:</div>
+                    <div class="grid grid-cols-4 gap-2" id="gaugePresetsRow"></div>
+                </div>
+
+                <button onclick="verifyGaugeDialSubmission()" class="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-cyan-500 to-sky-500 hover:from-cyan-400 hover:to-sky-400 text-slate-950 font-extrabold text-xs sm:text-sm shadow-lg flex items-center justify-center gap-2 cursor-pointer">
+                    <i class="fa-solid fa-satellite-dish"></i>
+                    <span>XÁC NHẬN THÔNG SỐ KHÍ TƯỢNG</span>
+                </button>
+            `;
+            container.appendChild(wrap);
+
+            const presetsRow = wrap.querySelector('#gaugePresetsRow');
+            shuffleList(mission.presets).forEach((val) => {
+                const btn = document.createElement('button');
+                btn.className = "py-2 px-2 rounded-lg bg-slate-950 hover:bg-cyan-950 border border-cyan-500/40 text-cyan-200 font-mono-tech font-bold text-xs transition cursor-pointer";
+                btn.textContent = `${val}`;
+                btn.onclick = () => {
+                    document.getElementById('gaugeSliderInput').value = val;
+                    updateGaugeDialValue(val);
+                };
+                presetsRow.appendChild(btn);
+            });
+        }
+
+        function updateGaugeDialValue(val) {
+            const mission = sessionMissions[currentMissionIdx];
+            currentGaugeValue = Number(val);
+            const readout = document.getElementById('gaugeValueReadout');
+            if (readout) {
+                readout.textContent = `${currentGaugeValue} ${mission.unit}`;
+            }
+        }
+
+        function verifyGaugeDialSubmission() {
+            if (missionResolved) return;
+            const mission = sessionMissions[currentMissionIdx];
+            if (Number(currentGaugeValue) === Number(mission.targetValue)) {
+                completeMissionSuccess();
+            } else {
+                escalateStormOnError(`THÔNG SỐ ${currentGaugeValue} ${mission.unit} CHƯA CHÍNH XÁC! HÃY XEM GỢI Ý SỐ LIỆU CHUẨN`);
+            }
+        }
+
+        /* ----------------------------------------------------------------------------
+           UNIFIED MISSION COMPLETION HANDLER (Weakens Storm, Clears Clouds, Lowers Flood)
+           ---------------------------------------------------------------------------- */
+        function completeMissionSuccess() {
+            if (missionResolved) return;
+            missionResolved = true;
+            stopMissionCountdown();
+            playWeatherSfx('calm_chime');
+
+            const mission = sessionMissions[currentMissionIdx];
+            document.getElementById('manualSupportBtn').classList.add('hidden');
+
+            // Calculate remaining steps to smoothly bring stormSeverity & floodLevel down to 0 by final mission
+            const remainingTasksAfterThis = (sessionMissions.length - 1) - currentMissionIdx;
+
+            if (remainingTasksAfterThis === 0) {
+                stormSeverity = 0;
+                floodLevel = 0;
+                windBeaufort = 2;
+            } else {
+                // During multi-task extreme wave, storm only drops modestly until the final task of the wave is completed!
+                if (mission.extremeWave && mission.extremeWave.step < mission.extremeWave.totalSteps) {
+                    stormSeverity = Math.max(8, stormSeverity - 5);
+                    floodLevel = Math.max(5, floodLevel - 4);
+                    windBeaufort = Math.max(3, windBeaufort - 1);
+                } else {
+                    const dropSeverity = Math.ceil(stormSeverity / (remainingTasksAfterThis + 1));
+                    const dropFlood = Math.ceil(floodLevel / (remainingTasksAfterThis + 1));
+                    stormSeverity = Math.max(5, stormSeverity - dropSeverity);
+                    floodLevel = Math.max(4, floodLevel - dropFlood);
+                    windBeaufort = Math.max(3, Math.round(3 + (stormSeverity / 100) * 12));
+                }
+            }
+
+            const gainedScore = currentTaskUsedSupport ? 75 : 100;
+            masteryScore += gainedScore;
+            updateWeatherVisualsAndMap();
+
+            // Show Positive Explanation Drawer
+            const drawer = document.getElementById('stormFeedbackDrawer');
+            const iconBox = document.getElementById('feedbackIconBox');
+            const title = document.getElementById('feedbackTitle');
+            const tag = document.getElementById('feedbackTag');
+            const bodyText = document.getElementById('feedbackBodyText');
+            const nextBtnWrap = document.getElementById('nextMissionBtnWrapper');
+            const nextBtnLabel = document.getElementById('nextMissionBtnLabel');
+
+            drawer.className = "mt-3.5 rounded-xl p-3.5 border bg-emerald-950/60 border-emerald-400/60 transition-all";
+            iconBox.className = "w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 flex items-center justify-center shrink-0 mt-0.5 text-base";
+            iconBox.innerHTML = '<i class="fa-solid fa-cloud-sun"></i>';
+
+            if (mission.extremeWave && mission.extremeWave.step < mission.extremeWave.totalSteps) {
+                title.textContent = `ĐÃ KHỐNG CHẾ MỘT PHẦN ĐỢT THIÊN TAI (+${gainedScore} ĐIỂM HIỂU BÀI)`;
+                tag.textContent = `CÒN ${mission.extremeWave.totalSteps - mission.extremeWave.step} NHIỆM VỤ LIÊN TIẾP`;
+            } else if (mission.extremeWave && mission.extremeWave.step === mission.extremeWave.totalSteps) {
+                title.textContent = `ĐÃ PHÁ TAN ĐỢT THIÊN TAI CỰC ĐOAN! (+${gainedScore} ĐIỂM HIỂU BÀI)`;
+                tag.textContent = "MÂY TAN - LỐC XOÁY SUY YẾU";
+            } else {
+                title.textContent = `XỬ LÝ CHÍNH XÁC! MÂY TAN - NƯỚC LŨ RÚT (+${gainedScore} ĐIỂM HIỂU BÀI)`;
+                tag.textContent = `GIÓ GIẢM CÒN CẤP ${windBeaufort}`;
+            }
+
+            title.className = "font-extrabold text-xs sm:text-sm uppercase tracking-wide text-emerald-300";
+            tag.className = "text-[10px] font-mono-tech px-2 py-0.5 rounded bg-emerald-500/25 text-emerald-200 border border-emerald-400/40";
+            bodyText.innerHTML = `<b class="text-emerald-200">Giải thích kiến thức:</b> ${mission.explanation}`;
+
+            if (currentMissionIdx === sessionMissions.length - 1) {
+                nextBtnLabel.textContent = "MỞ BẢN TIN TỔNG KẾT & NHẬN ĐIỂM THƯỞNG";
+            } else if (mission.extremeWave && mission.extremeWave.step < mission.extremeWave.totalSteps) {
+                nextBtnLabel.textContent = `XỬ LÝ NGAY NHIỆM VỤ LIÊN TIẾP (${mission.extremeWave.step + 1}/${mission.extremeWave.totalSteps})`;
+            } else {
+                nextBtnLabel.textContent = `TIẾP TỤC NHIỆM VỤ #${currentMissionIdx + 2}/${sessionMissions.length}`;
+            }
+
+            nextBtnWrap.classList.remove('hidden');
+            drawer.classList.remove('hidden');
+        }
+
+        function goToNextMission() {
+            if (currentMissionIdx < sessionMissions.length - 1) {
+                currentMissionIdx++;
+                updateWeatherVisualsAndMap();
+                loadMissionCard();
+            } else {
+                openFinalWeatherBulletin();
+            }
+        }
+
+        /* ============================================================================
+           7. FINAL WEATHER BULLETIN & REWARD SUMMARY (+0.5 or +0.25 Points)
+           ============================================================================ */
+        function openFinalWeatherBulletin() {
+            isGameActive = false;
+            stopMissionCountdown();
+
+            // Set sky to 100% Clear Green & Sunshine
+            stormSeverity = 0;
+            floodLevel = 0;
+            windBeaufort = 2;
+            updateWeatherVisualsAndMap();
+            stopAmbientWindSound();
+            playWeatherSfx('victory_sun');
+
+            document.getElementById('gameScreen').classList.add('hidden');
+            document.getElementById('gameScreen').classList.remove('flex');
+
+            const bulletinScreen = document.getElementById('bulletinScreen');
+            bulletinScreen.classList.remove('hidden');
+
+            document.getElementById('bulletinStudentName').textContent = studentName;
+            document.getElementById('bulletinStudentClass').textContent = studentClass;
+            document.getElementById('bulletinFinalMastery').textContent = `${masteryScore} điểm`;
+
+            const randSerial = Math.floor(10000 + Math.random() * 90000);
+            document.getElementById('bulletinCode').textContent = `VN-CLEAR-${randSerial}`;
+
+            const now = new Date();
+            const pad = (n) => String(n).padStart(2, '0');
+            document.getElementById('bulletinTimestamp').textContent = `${pad(now.getHours())}:${pad(now.getMinutes())} - ${pad(now.getDate())}/${pad(now.getMonth() + 1)}/${now.getFullYear()}`;
+
+            const mainTitle = document.getElementById('bulletinMainTitle');
+            const desc = document.getElementById('bulletinDescription');
+            const bonusScore = document.getElementById('bulletinBonusScore');
+            const supportTag = document.getElementById('bulletinSupportCountTag');
+            const rewardBox = document.getElementById('bulletinRewardBox');
+            const trophyIcon = document.getElementById('bulletinTrophyIcon');
+
+            if (!usedSystemSupport) {
+                mainTitle.textContent = "TRỜI QUANG MÂY TẠNH • CHỨNG NHẬN DẬP BÃO XUẤT SẮC";
+                desc.innerHTML = `Chỉ huy <b class="text-white">${studentName}</b> đã giải quyết hoàn toàn <b>${sessionMissions.length}/${sessionMissions.length} nhiệm vụ tương tác Cơn Bão Kiến Thức</b> (bao gồm Định vị bản đồ, Giải mã công điện, Phân tầng địa lí, Ghép nối trạm và Hiệu chỉnh máy đo), đưa bản đồ thời tiết từ Báo động Đỏ về <span class="text-emerald-300 font-bold">Màu Xanh Bình Yên</span> mà <b>không cần sử dụng bất kỳ sự hỗ trợ nào</b> từ hệ thống!`;
+                bonusScore.textContent = "+0.5 ĐIỂM";
+                bonusScore.className = "text-3xl sm:text-4xl font-extrabold font-mono-tech text-amber-300 my-1";
+                supportTag.textContent = "Tự lực 100% (0 lần hỗ trợ)";
+                supportTag.className = "text-[11px] px-2.5 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-400/40 font-semibold";
+                rewardBox.className = "bg-gradient-to-br from-amber-500/25 via-emerald-500/15 to-cyan-500/20 border-2 border-amber-400/70 rounded-xl p-4 text-center flex flex-col items-center justify-center h-full";
+                trophyIcon.className = "fa-solid fa-trophy";
+            } else {
+                mainTitle.textContent = "TRỜI QUANG MÂY TẠNH • BẢN TIN HOÀN THÀNH CHIẾN DỊCH";
+                desc.innerHTML = `Chỉ huy <b class="text-white">${studentName}</b> đã kiên cường xử lý thành công toàn bộ <b>${sessionMissions.length}/${sessionMissions.length} nhiệm vụ tương tác Cơn Bão Kiến Thức</b> và làm tan hoàn toàn mây bão, rút sạch nước ngập (có sử dụng <b>${totalSupportsUsed} lần</b> gợi ý biện pháp chống bão từ hệ thống). Hãy thử sức lượt mới với bộ nhiệm vụ khác để chinh phục mức thưởng +0.5 điểm!`;
+                bonusScore.textContent = "+0.25 ĐIỂM";
+                bonusScore.className = "text-3xl sm:text-4xl font-extrabold font-mono-tech text-cyan-300 my-1";
+                supportTag.textContent = `Đã dùng hỗ trợ: ${totalSupportsUsed} nhiệm vụ`;
+                supportTag.className = "text-[11px] px-2.5 py-0.5 rounded bg-slate-900 text-amber-300 border border-amber-400/40 font-semibold";
+                rewardBox.className = "bg-gradient-to-br from-cyan-500/25 via-sky-500/15 to-emerald-500/20 border-2 border-cyan-400/60 rounded-xl p-4 text-center flex flex-col items-center justify-center h-full";
+                trophyIcon.className = "fa-solid fa-medal";
+            }
+        }
+
+        function replayNewStormSession() {
+            generateStormSessionMissions();
+            currentMissionIdx = 0;
+            masteryScore = 0;
+            stormSeverity = 75;
+            floodLevel = 60;
+            windBeaufort = 12;
+            usedSystemSupport = false;
+            totalSupportsUsed = 0;
+            isGameActive = true;
+
+            document.getElementById('bulletinScreen').classList.add('hidden');
+            const gameScreen = document.getElementById('gameScreen');
+            gameScreen.classList.remove('hidden');
+            gameScreen.classList.add('flex');
+
+            startAmbientWindSound();
+            updateWeatherVisualsAndMap();
+            loadMissionCard();
+        }
+
+        function switchCommanderAccount() {
+            isGameActive = false;
+            stopMissionCountdown();
+            stopAmbientWindSound();
+            stormSeverity = 75;
+            floodLevel = 60;
+            windBeaufort = 12;
+            updateWeatherVisualsAndMap();
+
+            document.getElementById('bulletinScreen').classList.add('hidden');
+            document.getElementById('commanderBadge').classList.add('hidden');
+            document.getElementById('commanderBadge').classList.remove('flex');
+            document.getElementById('startScreen').classList.remove('hidden');
+        }
+
+        // Start rain animation loop on window load
+        window.onload = function () {
+            animateWeatherCanvas();
+        };
+    </script>
+</body>
+</html>
